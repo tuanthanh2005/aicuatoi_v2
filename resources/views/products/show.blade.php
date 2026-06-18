@@ -34,53 +34,69 @@
     <style>
         :root {
             --emerald-primary: #10b981;
-            --emerald-primary-glow: rgba(16, 185, 129, 0.15);
-            --emerald-secondary: #475569;
-            --emerald-bg: #f8fafc;
-            --emerald-card-bg: #ffffff;
-            --emerald-text-main: #0f172a;
-            --emerald-text-muted: #64748b;
-            --emerald-border: #e2e8f0;
+            --emerald-primary-glow: rgba(16, 185, 129, 0.2);
+            --emerald-secondary: #059669;
+            --emerald-bg: #0b1329;
+            --emerald-card-bg: #1e293b;
+            --emerald-text-main: #f8fafc;
+            --emerald-text-muted: #94a3b8;
+            --emerald-border: #334155;
         }
 
         .emerald-wrapper {
             background-color: var(--emerald-bg);
-            background-image: radial-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 0), radial-gradient(rgba(71, 85, 105, 0.03) 1px, transparent 0);
+            background-image: radial-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 0), radial-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 0);
             background-size: 24px 24px;
             background-position: 0 0, 12px 12px;
             padding: 50px 0;
             min-height: 100vh;
+            color: var(--emerald-text-main);
+
+            /* Desktop Banner Variables */
+            --banner-card-bg: var(--emerald-card-bg);
+            --banner-card-border: var(--emerald-border);
+            --banner-card-title: var(--emerald-text-main);
+            --banner-card-subtitle: var(--emerald-text-muted);
+            --banner-card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --banner-card-hover-shadow: 0 20px 50px rgba(16, 185, 129, 0.06);
+            --banner-card-hover-border: var(--emerald-primary);
+            --banner-icon-bg-zalo: rgba(16, 185, 129, 0.15);
+            --banner-icon-color-zalo: #10b981;
+            --banner-icon-bg-fb: rgba(24, 119, 242, 0.15);
+            --banner-icon-color-fb: #10b981;
+            --banner-icon-bg-admin: rgba(6, 182, 212, 0.15);
+            --banner-icon-color-admin: #06b6d4;
         }
 
         .emerald-card {
             background: var(--emerald-card-bg);
             border-radius: 24px;
             padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             border: 1px solid var(--emerald-border);
             transition: all 0.3s ease;
         }
 
         .emerald-card:hover {
-            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.04);
-            border-color: rgba(16, 185, 129, 0.2);
+            box-shadow: 0 20px 50px rgba(16, 185, 129, 0.06);
+            border-color: rgba(16, 185, 129, 0.25);
         }
 
         .product-detail-image {
             border-radius: 18px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--emerald-border);
         }
 
         .product-detail-image:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.08);
+            box-shadow: 0 20px 45px rgba(16, 185, 129, 0.15);
         }
 
         .info-badge {
-            background: rgba(16, 185, 129, 0.03);
-            border: 1px solid rgba(16, 185, 129, 0.08);
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid var(--emerald-border);
             color: var(--emerald-text-main);
             padding: 16px 20px;
             border-radius: 16px;
@@ -92,7 +108,7 @@
         }
 
         .info-badge:hover {
-            background: rgba(16, 185, 129, 0.06);
+            background: rgba(30, 41, 59, 0.8);
             transform: translateY(-2px);
         }
 
@@ -131,7 +147,7 @@
             font-weight: 700;
             border-radius: 50px;
             padding: 14px 28px;
-            box-shadow: 0 8px 20px rgba(250, 204, 21, 0.2);
+            box-shadow: 0 8px 20px rgba(250, 204, 21, 0.25);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -141,7 +157,7 @@
 
         .btn-buy-secondary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(250, 204, 21, 0.35);
+            box-shadow: 0 12px 25px rgba(250, 204, 21, 0.4);
             color: #0f172a;
         }
 
@@ -161,15 +177,15 @@
 
         .btn-buy-outline:hover {
             transform: translateY(-2px);
-            background: #f1f5f9;
+            background: #334155;
             color: var(--emerald-text-main);
             border-color: var(--emerald-text-muted);
         }
 
         .emerald-tab.nav-link {
-            border: 1px solid var(--emerald-border);
-            background: #ffffff;
-            color: var(--emerald-text-muted);
+            border: 1px solid var(--emerald-border) !important;
+            background: var(--emerald-card-bg) !important;
+            color: var(--emerald-text-muted) !important;
             border-radius: 16px;
             padding: 15px 25px;
             font-weight: 600;
@@ -182,29 +198,30 @@
 
         .emerald-tab.nav-link i {
             font-size: 18px;
-            color: var(--emerald-text-muted);
+            color: var(--emerald-text-muted) !important;
+            margin: 0 !important;
         }
 
         .emerald-tab.nav-link:hover {
             transform: translateY(-2px);
-            background: #f8fafc;
-            color: var(--emerald-primary);
-            border-color: rgba(16, 185, 129, 0.2);
+            background: #334155 !important;
+            color: var(--emerald-primary) !important;
+            border-color: rgba(16, 185, 129, 0.2) !important;
         }
 
         .emerald-tab.nav-link.active {
-            background: linear-gradient(135deg, var(--emerald-primary) 0%, #059669 100%);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 8px 20px var(--emerald-primary-glow);
+            background: linear-gradient(135deg, var(--emerald-primary) 0%, #059669 100%) !important;
+            color: white !important;
+            border-color: transparent !important;
+            box-shadow: 0 8px 20px var(--emerald-primary-glow) !important;
         }
 
         .emerald-tab.nav-link.active i {
-            color: white;
+            color: white !important;
         }
 
         .spec-item-box {
-            background: #f8fafc;
+            background: rgba(30, 41, 59, 0.4);
             border: 1px solid var(--emerald-border);
             border-radius: 16px;
             padding: 18px 20px;
@@ -215,9 +232,9 @@
             transition: all 0.2s ease;
         }
         .spec-item-box:hover {
-            background: #ffffff;
+            background: var(--emerald-card-bg);
             border-color: rgba(16, 185, 129, 0.25);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.03);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.05);
         }
 
         .rating-input {
@@ -232,13 +249,96 @@
         .rating-input label {
             cursor: pointer;
             font-size: 28px;
-            color: #ddd;
+            color: #4b5563;
             transition: color 0.2s;
         }
         .rating-input label:hover,
         .rating-input label:hover ~ label,
         .rating-input input:checked ~ label {
             color: #ffc107;
+        }
+
+        /* --- DARK THEME OVERRIDES FOR GENERAL DOM ELEMENTS IN CONTAINER --- */
+        .emerald-wrapper .card {
+            background: var(--emerald-card-bg) !important;
+            border: 1px solid var(--emerald-border) !important;
+            color: var(--emerald-text-main) !important;
+        }
+        .emerald-wrapper .bg-light, 
+        .emerald-wrapper .card.bg-light {
+            background: rgba(30, 41, 59, 0.5) !important;
+            border: 1px solid var(--emerald-border) !important;
+            color: var(--emerald-text-main) !important;
+        }
+        .emerald-wrapper .text-muted {
+            color: var(--emerald-text-muted) !important;
+        }
+        .emerald-wrapper h1, 
+        .emerald-wrapper h2, 
+        .emerald-wrapper h3, 
+        .emerald-wrapper h4, 
+        .emerald-wrapper h5, 
+        .emerald-wrapper h6, 
+        .emerald-wrapper strong {
+            color: var(--emerald-text-main) !important;
+        }
+        .emerald-wrapper .text-dark {
+            color: var(--emerald-text-main) !important;
+        }
+        .emerald-wrapper .text-primary {
+            color: var(--emerald-primary) !important;
+        }
+        .emerald-wrapper .breadcrumb-item a {
+            color: var(--emerald-primary) !important;
+        }
+        .emerald-wrapper .breadcrumb-item a:hover {
+            color: #ffffff !important;
+            text-decoration: underline !important;
+        }
+        .emerald-wrapper .breadcrumb-item.active {
+            color: var(--emerald-text-muted) !important;
+        }
+        .emerald-wrapper .breadcrumb-item::before {
+            color: var(--emerald-text-muted) !important;
+        }
+        .emerald-wrapper .form-control {
+            background-color: rgba(15, 23, 42, 0.8) !important;
+            border: 1px solid var(--emerald-border) !important;
+            color: var(--emerald-text-main) !important;
+        }
+        .emerald-wrapper .form-control::placeholder {
+            color: #64748b !important;
+        }
+        .emerald-wrapper .form-control:focus {
+            background-color: var(--emerald-card-bg) !important;
+            border-color: var(--emerald-primary) !important;
+            box-shadow: 0 0 0 3px var(--emerald-primary-glow) !important;
+        }
+        .emerald-wrapper .border-bottom {
+            border-color: var(--emerald-border) !important;
+        }
+        .emerald-wrapper .border-top {
+            border-color: var(--emerald-border) !important;
+        }
+        .emerald-wrapper .alert-success {
+            background: rgba(16, 185, 129, 0.1) !important;
+            color: #34d399 !important;
+            border: none !important;
+        }
+        .emerald-wrapper .alert-danger {
+            background: rgba(239, 68, 68, 0.1) !important;
+            color: #f87171 !important;
+            border: none !important;
+        }
+        .emerald-wrapper .alert-info {
+            background: rgba(59, 130, 246, 0.1) !important;
+            color: #60a5fa !important;
+            border: none !important;
+        }
+        .emerald-wrapper .alert-warning {
+            background: rgba(245, 158, 11, 0.1) !important;
+            color: #fbbf24 !important;
+            border: none !important;
         }
 
         @media (max-width: 768px) {
@@ -324,7 +424,7 @@
                     <h1 class="fw-bold mb-3" style="color: var(--emerald-text-main); font-size: 2rem;">{{ $product->name }}</h1>
                     <p class="lead text-muted mb-4" style="font-size: 1rem; line-height: 1.6;">{{ Str::limit($product->description, 150, '......') }}</p>
                     
-                    <div class="mb-4 p-4 rounded-4" style="background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.06);">
+                    <div class="mb-4 p-4 rounded-4" style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.1);">
                         <div class="d-flex align-items-end gap-3 flex-wrap">
                             <h2 class="fw-bold mb-0" style="color: var(--emerald-primary); font-size: 2.2rem;">{{ $product->formatted_price }}</h2>
                             @if($product->is_on_sale)
@@ -477,7 +577,7 @@
                             <h4 class="fw-bold mb-4" style="color: var(--emerald-text-main);">
                                 <i class="fas fa-align-left text-primary me-2"></i>Mô Tả Chi Tiết
                             </h4>
-                            <div class="description-content mb-4" style="line-height: 1.8; color: #334155;">{{ $product->description }}</div>
+                            <div class="description-content mb-4" style="line-height: 1.8; color: var(--emerald-text-muted);">{!! nl2br(e($product->description)) !!}</div>
                             
                             <div class="border-top pt-4 mt-4" style="border-color: var(--emerald-border);">
                                 <h5 class="fw-bold mb-4" style="color: var(--emerald-text-main);">

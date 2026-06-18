@@ -6,54 +6,70 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <style>
         :root {
-            --tech-primary: #4f46e5;
-            --tech-primary-glow: rgba(79, 70, 229, 0.15);
-            --tech-secondary: #0d9488;
-            --tech-bg: #f8fafc;
-            --tech-card-bg: #ffffff;
-            --tech-text-main: #0f172a;
-            --tech-text-muted: #64748b;
-            --tech-border: #e2e8f0;
+            --tech-primary: #818cf8;
+            --tech-primary-glow: rgba(129, 140, 248, 0.2);
+            --tech-secondary: #2dd4bf;
+            --tech-bg: #0b0f19;
+            --tech-card-bg: #111827;
+            --tech-text-main: #f3f4f6;
+            --tech-text-muted: #9ca3af;
+            --tech-border: #1f2937;
         }
 
         .tech-wrapper {
             background-color: var(--tech-bg);
-            background-image: radial-gradient(rgba(79, 70, 229, 0.03) 1px, transparent 0), radial-gradient(rgba(13, 148, 136, 0.03) 1px, transparent 0);
+            background-image: radial-gradient(rgba(129, 140, 248, 0.04) 1px, transparent 0), radial-gradient(rgba(45, 212, 191, 0.04) 1px, transparent 0);
             background-size: 24px 24px;
             background-position: 0 0, 12px 12px;
             padding: 50px 0;
             min-height: 100vh;
+            color: var(--tech-text-main);
+
+            /* Desktop Banner Variables */
+            --banner-card-bg: var(--tech-card-bg);
+            --banner-card-border: var(--tech-border);
+            --banner-card-title: var(--tech-text-main);
+            --banner-card-subtitle: var(--tech-text-muted);
+            --banner-card-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            --banner-card-hover-shadow: 0 20px 50px rgba(129, 140, 248, 0.06);
+            --banner-card-hover-border: var(--tech-primary);
+            --banner-icon-bg-zalo: rgba(59, 130, 246, 0.15);
+            --banner-icon-color-zalo: #818cf8;
+            --banner-icon-bg-fb: rgba(24, 119, 242, 0.15);
+            --banner-icon-color-fb: #818cf8;
+            --banner-icon-bg-admin: rgba(45, 212, 191, 0.15);
+            --banner-icon-color-admin: #2dd4bf;
         }
 
         .tech-card {
             background: var(--tech-card-bg);
             border-radius: 24px;
             padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
             border: 1px solid var(--tech-border);
             transition: all 0.3s ease;
         }
 
         .tech-card:hover {
-            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.04);
-            border-color: rgba(79, 70, 229, 0.2);
+            box-shadow: 0 20px 50px rgba(129, 140, 248, 0.06);
+            border-color: rgba(129, 140, 248, 0.25);
         }
 
         .product-detail-image {
             border-radius: 18px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--tech-border);
         }
 
         .product-detail-image:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.1);
+            box-shadow: 0 20px 45px rgba(129, 140, 248, 0.15);
         }
 
         .tech-badge {
-            background: rgba(79, 70, 229, 0.03);
-            border: 1px solid rgba(79, 70, 229, 0.08);
+            background: rgba(129, 140, 248, 0.04);
+            border: 1px solid rgba(129, 140, 248, 0.12);
             color: var(--tech-text-main);
             padding: 16px 20px;
             border-radius: 16px;
@@ -65,7 +81,7 @@
         }
 
         .tech-badge:hover {
-            background: rgba(79, 70, 229, 0.06);
+            background: rgba(129, 140, 248, 0.08);
             transform: translateY(-2px);
         }
 
@@ -83,7 +99,7 @@
             font-weight: 700;
             border-radius: 50px;
             padding: 14px 30px;
-            box-shadow: 0 8px 20px var(--tech-primary-glow);
+            box-shadow: 0 8px 20px rgba(129, 140, 248, 0.3);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -93,7 +109,7 @@
 
         .btn-buy-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 12px 25px rgba(129, 140, 248, 0.45);
             color: white;
         }
 
@@ -104,7 +120,7 @@
             font-weight: 700;
             border-radius: 50px;
             padding: 14px 28px;
-            box-shadow: 0 8px 20px rgba(250, 204, 21, 0.2);
+            box-shadow: 0 8px 20px rgba(250, 204, 21, 0.25);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -114,7 +130,7 @@
 
         .btn-buy-secondary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(250, 204, 21, 0.35);
+            box-shadow: 0 12px 25px rgba(250, 204, 21, 0.4);
             color: #0f172a;
         }
 
@@ -134,15 +150,15 @@
 
         .btn-buy-outline:hover {
             transform: translateY(-2px);
-            background: #f1f5f9;
-            color: var(--tech-text-main);
+            background: #1f2937;
+            color: #ffffff;
             border-color: var(--tech-text-muted);
         }
 
         .tech-tab.nav-link {
-            border: 1px solid var(--tech-border);
-            background: #ffffff;
-            color: var(--tech-text-muted);
+            border: 1px solid var(--tech-border) !important;
+            background: var(--tech-card-bg) !important;
+            color: var(--tech-text-muted) !important;
             border-radius: 16px;
             padding: 15px 25px;
             font-weight: 600;
@@ -155,30 +171,30 @@
 
         .tech-tab.nav-link i {
             font-size: 18px;
-            color: var(--tech-text-muted);
+            color: var(--tech-text-muted) !important;
             margin: 0 !important;
         }
 
         .tech-tab.nav-link:hover {
             transform: translateY(-2px);
-            background: #f8fafc;
-            color: var(--tech-primary);
-            border-color: rgba(79, 70, 229, 0.2);
+            background: #1f2937 !important;
+            color: var(--tech-primary) !important;
+            border-color: rgba(129, 140, 248, 0.3) !important;
         }
 
         .tech-tab.nav-link.active {
-            background: linear-gradient(135deg, var(--tech-primary) 0%, #3b82f6 100%);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 8px 20px var(--tech-primary-glow);
+            background: linear-gradient(135deg, var(--tech-primary) 0%, #3b82f6 100%) !important;
+            color: white !important;
+            border-color: transparent !important;
+            box-shadow: 0 8px 20px var(--tech-primary-glow) !important;
         }
 
         .tech-tab.nav-link.active i {
-            color: white;
+            color: white !important;
         }
 
         .spec-item-box {
-            background: #f8fafc;
+            background: rgba(31, 41, 55, 0.4);
             border: 1px solid var(--tech-border);
             border-radius: 16px;
             padding: 18px 20px;
@@ -189,9 +205,9 @@
             transition: all 0.2s ease;
         }
         .spec-item-box:hover {
-            background: #ffffff;
-            border-color: rgba(79, 70, 229, 0.25);
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.03);
+            background: var(--tech-card-bg);
+            border-color: rgba(129, 140, 248, 0.3);
+            box-shadow: 0 4px 12px rgba(129, 140, 248, 0.05);
         }
 
         .rating-input {
@@ -206,13 +222,93 @@
         .rating-input label {
             cursor: pointer;
             font-size: 28px;
-            color: #ddd;
+            color: #4b5563;
             transition: color 0.2s;
         }
         .rating-input label:hover,
         .rating-input label:hover ~ label,
         .rating-input input:checked ~ label {
             color: #ffc107;
+        }
+
+        /* --- DARK THEME OVERRIDES FOR GENERAL DOM ELEMENTS IN CONTAINER --- */
+        .tech-wrapper .card {
+            background: var(--tech-card-bg) !important;
+            border: 1px solid var(--tech-border) !important;
+            color: var(--tech-text-main) !important;
+        }
+        .tech-wrapper .bg-light, 
+        .tech-wrapper .card.bg-light {
+            background: rgba(31, 41, 55, 0.5) !important;
+            border: 1px solid var(--tech-border) !important;
+            color: var(--tech-text-main) !important;
+        }
+        .tech-wrapper .text-muted {
+            color: var(--tech-text-muted) !important;
+        }
+        .tech-wrapper h1, 
+        .tech-wrapper h2, 
+        .tech-wrapper h3, 
+        .tech-wrapper h4, 
+        .tech-wrapper h5, 
+        .tech-wrapper h6, 
+        .tech-wrapper strong {
+            color: var(--tech-text-main) !important;
+        }
+        .tech-wrapper .text-dark {
+            color: var(--tech-text-main) !important;
+        }
+        .tech-wrapper .text-primary {
+            color: var(--tech-primary) !important;
+        }
+        .tech-wrapper .breadcrumb-item a {
+            color: var(--tech-primary) !important;
+        }
+        .tech-wrapper .breadcrumb-item a:hover {
+            color: #ffffff !important;
+            text-decoration: underline !important;
+        }
+        .tech-wrapper .breadcrumb-item.active {
+            color: var(--tech-text-muted) !important;
+        }
+        .tech-wrapper .breadcrumb-item::before {
+            color: var(--tech-text-muted) !important;
+        }
+        .tech-wrapper .form-control {
+            background-color: rgba(17, 24, 39, 0.8) !important;
+            border: 1px solid var(--tech-border) !important;
+            color: var(--tech-text-main) !important;
+        }
+        .tech-wrapper .form-control::placeholder {
+            color: #6b7280 !important;
+        }
+        .tech-wrapper .form-control:focus {
+            background-color: var(--tech-card-bg) !important;
+            border-color: var(--tech-primary) !important;
+            box-shadow: 0 0 0 3px var(--tech-primary-glow) !important;
+        }
+        .tech-wrapper .border-bottom {
+            border-color: var(--tech-border) !important;
+        }
+        .tech-wrapper .alert-success {
+            background: rgba(16, 185, 129, 0.1) !important;
+            color: #34d399 !important;
+            border: none !important;
+        }
+        .tech-wrapper .alert-danger {
+            background: rgba(239, 68, 68, 0.1) !important;
+            color: #f87171 !important;
+            border: none !important;
+        }
+        .tech-wrapper .alert-info {
+            background: rgba(59, 130, 246, 0.1) !important;
+            color: #60a5fa !important;
+            border: none !important;
+        }
+        .tech-wrapper .alert-warning {
+            background: rgba(245, 158, 11, 0.1) !important;
+            color: #fbbf24 !important;
+            border: none !important;
         }
 
         @media (max-width: 768px) {
@@ -292,13 +388,13 @@
             
             <div class="col-lg-6" data-aos="fade-left">
                 <div class="tech-card">
-                    <span class="badge mb-3" style="font-size: 13px; font-weight: 700; background: rgba(79, 70, 229, 0.08); color: var(--tech-primary); border-radius: 30px; padding: 6px 16px; border: 1px solid rgba(79, 70, 229, 0.12);">
+                    <span class="badge mb-3" style="font-size: 13px; font-weight: 700; background: rgba(129, 140, 248, 0.12); color: var(--tech-primary); border-radius: 30px; padding: 6px 16px; border: 1px solid rgba(129, 140, 248, 0.2);">
                         <i class="fas fa-microchip me-1"></i> {{ strtoupper($product->category) }}
                     </span>
                     <h1 class="fw-bold mb-3" style="color: var(--tech-text-main); font-size: 2rem;">{{ $product->name }}</h1>
                     <p class="lead text-muted mb-4" style="font-size: 1rem; line-height: 1.6;">{{ Str::limit($product->description, 150, '......') }}</p>
                     
-                    <div class="mb-4 p-4 rounded-4" style="background: rgba(79, 70, 229, 0.03); border: 1px solid rgba(79, 70, 229, 0.06);">
+                    <div class="mb-4 p-4 rounded-4" style="background: rgba(129, 140, 248, 0.05); border: 1px solid rgba(129, 140, 248, 0.1);">
                         <div class="d-flex align-items-end gap-3 flex-wrap">
                             <h2 class="fw-bold mb-0" style="color: var(--tech-primary); font-size: 2.2rem;">{{ $product->formatted_price }}</h2>
                             @if($product->is_on_sale)
@@ -313,13 +409,13 @@
                     
                     @if($product->stock > 0)
                         <div class="d-flex align-items-center flex-wrap gap-2 mb-4">
-                            <div class="alert alert-success d-inline-flex align-items-center mb-0 py-2 px-3 border-0" style="background: rgba(16, 185, 129, 0.08); color: #10b981; border-radius: 12px; font-weight: 600;">
+                            <div class="alert alert-success d-inline-flex align-items-center mb-0 py-2 px-3 border-0" style="font-weight: 600;">
                                 <i class="fas fa-check-circle me-2"></i> Còn hàng ({{ $product->stock }} sản phẩm)
                             </div>
                             <small class="text-muted"><i class="far fa-clock me-1"></i>Giao hàng / Kích hoạt nhanh chóng</small>
                         </div>
                     @else
-                        <div class="alert alert-danger d-inline-flex align-items-center mb-4 py-2 px-3 border-0" style="background: rgba(239, 68, 68, 0.08); color: #ef4444; border-radius: 12px; font-weight: 600;">
+                        <div class="alert alert-danger d-inline-flex align-items-center mb-4 py-2 px-3 border-0" style="font-weight: 600;">
                             <i class="fas fa-times-circle me-2"></i> Hết hàng
                         </div>
                     @endif
@@ -357,7 +453,7 @@
                                 <div class="col-md-6 col-lg-4">
                                     <div class="spec-item-box">
                                         <span class="text-muted me-2" style="font-weight: 500;">{{ ucfirst(str_replace('_', ' ', $key)) }}:</span>
-                                        <strong class="text-dark text-end" style="font-weight: 700;">{{ is_array($value) ? implode(', ', $value) : $value }}</strong>
+                                        <strong class="text-light text-end" style="font-weight: 700; color: var(--tech-text-main) !important;">{{ is_array($value) ? implode(', ', $value) : $value }}</strong>
                                     </div>
                                 </div>
                                 @endif
@@ -411,12 +507,12 @@
                             <div class="row g-3">
                                 @php
                                 $defaultColors = [
-                                    '#4f46e5', // Indigo
-                                    '#0d9488', // Teal
-                                    '#3b82f6', // Blue
-                                    '#10b981', // Emerald
-                                    '#f59e0b', // Amber
-                                    '#ec4899', // Pink
+                                    '#818cf8', // Indigo
+                                    '#2dd4bf', // Teal
+                                    '#60a5fa', // Blue
+                                    '#34d399', // Emerald
+                                    '#fbbf24', // Amber
+                                    '#f472b6', // Pink
                                 ];
                                 @endphp
                                 @foreach($product->features as $index => $feature)
@@ -437,7 +533,7 @@
                                 @endforeach
                             </div>
                             @else
-                            <div class="alert alert-info border-0" style="background: rgba(59, 130, 246, 0.08); color: #3b82f6; border-radius: 12px;">
+                            <div class="alert alert-info border-0" style="font-weight: 600;">
                                 <i class="fas fa-info-circle me-2"></i>
                                 Chưa có thông tin tính năng nổi bật cho sản phẩm này.
                             </div>
@@ -451,9 +547,9 @@
                             <h4 class="fw-bold mb-4" style="color: var(--tech-text-main);">
                                 <i class="fas fa-align-left text-info me-2"></i>Mô Tả Chi Tiết
                             </h4>
-                            <div class="description-content" style="line-height: 1.8; color: #334155;">{!! nl2br(e($product->description)) !!}</div>
+                            <div class="description-content" style="line-height: 1.8; color: #d1d5db;">{!! nl2br(e($product->description)) !!}</div>
                             <hr class="my-4" style="border-color: var(--tech-border);">
-                            <div class="alert alert-info border-0 rounded-4" style="background: rgba(59, 130, 246, 0.08); color: #3b82f6; border-radius: 16px;">
+                            <div class="alert alert-info border-0 rounded-4" style="font-weight: 600;">
                                 <i class="fas fa-info-circle me-2"></i>
                                 <strong>Lưu ý:</strong> Sản phẩm công nghệ được kiểm tra kỹ lưỡng trước khi giao hàng. 
                                 Hỗ trợ nhanh chóng qua nhóm hỗ trợ hoặc box chat trực tiếp của chúng tôi.

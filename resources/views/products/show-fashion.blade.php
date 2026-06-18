@@ -6,49 +6,65 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <style>
         :root {
-            --fashion-primary: #f43f5e;
-            --fashion-primary-glow: rgba(244, 63, 94, 0.15);
-            --fashion-secondary: #f97316;
-            --fashion-bg: #fafaf9;
-            --fashion-card-bg: #ffffff;
-            --fashion-text-main: #1c1917;
-            --fashion-text-muted: #78716c;
-            --fashion-border: #f5f5f4;
+            --fashion-primary: #fb7185;
+            --fashion-primary-glow: rgba(251, 113, 133, 0.2);
+            --fashion-secondary: #fb923c;
+            --fashion-bg: #120e0e;
+            --fashion-card-bg: #1c1917;
+            --fashion-text-main: #f5f5f4;
+            --fashion-text-muted: #a8a29e;
+            --fashion-border: #292524;
         }
 
         .fashion-wrapper {
             background-color: var(--fashion-bg);
-            background-image: radial-gradient(rgba(244, 63, 94, 0.03) 1px, transparent 0), radial-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 0);
+            background-image: radial-gradient(rgba(251, 113, 133, 0.04) 1px, transparent 0), radial-gradient(rgba(251, 146, 60, 0.04) 1px, transparent 0);
             background-size: 24px 24px;
             background-position: 0 0, 12px 12px;
             padding: 50px 0;
             min-height: 100vh;
+            color: var(--fashion-text-main);
+
+            /* Desktop Banner Variables */
+            --banner-card-bg: var(--fashion-card-bg);
+            --banner-card-border: var(--fashion-border);
+            --banner-card-title: var(--fashion-text-main);
+            --banner-card-subtitle: var(--fashion-text-muted);
+            --banner-card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --banner-card-hover-shadow: 0 20px 50px rgba(251, 113, 133, 0.06);
+            --banner-card-hover-border: var(--fashion-primary);
+            --banner-icon-bg-zalo: rgba(251, 113, 133, 0.15);
+            --banner-icon-color-zalo: #fb7185;
+            --banner-icon-bg-fb: rgba(24, 119, 242, 0.15);
+            --banner-icon-color-fb: #fb7185;
+            --banner-icon-bg-admin: rgba(251, 146, 60, 0.15);
+            --banner-icon-color-admin: #fb923c;
         }
 
         .fashion-card {
             background: var(--fashion-card-bg);
             border-radius: 24px;
             padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             border: 1px solid var(--fashion-border);
             transition: all 0.3s ease;
         }
 
         .fashion-card:hover {
-            box-shadow: 0 20px 40px rgba(244, 63, 94, 0.04);
-            border-color: rgba(244, 63, 94, 0.2);
+            box-shadow: 0 20px 50px rgba(251, 113, 133, 0.06);
+            border-color: rgba(251, 113, 133, 0.25);
         }
 
         .product-detail-image {
             border-radius: 18px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--fashion-border);
         }
 
         .product-detail-image:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(244, 63, 94, 0.08);
+            box-shadow: 0 20px 45px rgba(251, 113, 133, 0.12);
         }
 
         .size-selector {
@@ -61,7 +77,7 @@
             width: 48px;
             height: 48px;
             border: 1.5px solid var(--fashion-border);
-            background: #ffffff;
+            background: #292524;
             border-radius: 12px;
             font-weight: 700;
             color: var(--fashion-text-main);
@@ -71,7 +87,7 @@
         .size-btn:hover {
             border-color: var(--fashion-primary);
             color: var(--fashion-primary);
-            background: rgba(244, 63, 94, 0.02);
+            background: rgba(251, 113, 133, 0.04);
         }
 
         .size-btn.active {
@@ -94,7 +110,7 @@
             border: 3px solid transparent;
             cursor: pointer;
             transition: all 0.25s ease;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .color-option:hover {
@@ -104,12 +120,12 @@
         .color-option.active {
             border-color: var(--fashion-primary);
             transform: scale(1.15);
-            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.2);
+            box-shadow: 0 4px 12px rgba(251, 113, 133, 0.25);
         }
 
         .fashion-badge {
-            background: rgba(244, 63, 94, 0.03);
-            border: 1px solid rgba(244, 63, 94, 0.08);
+            background: rgba(251, 113, 133, 0.04);
+            border: 1px solid rgba(251, 113, 133, 0.12);
             color: var(--fashion-text-main);
             padding: 16px 20px;
             border-radius: 16px;
@@ -121,7 +137,7 @@
         }
 
         .fashion-badge:hover {
-            background: rgba(244, 63, 94, 0.06);
+            background: rgba(251, 113, 133, 0.08);
             transform: translateY(-2px);
         }
 
@@ -149,18 +165,18 @@
 
         .btn-buy-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(244, 63, 94, 0.3);
+            box-shadow: 0 12px 25px rgba(251, 113, 133, 0.4);
             color: white;
         }
 
         .btn-buy-secondary {
-            background: #0f172a;
-            color: #ffffff;
+            background: #f5f5f4;
+            color: #1c1917;
             border: none;
             font-weight: 700;
             border-radius: 50px;
             padding: 14px 28px;
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+            box-shadow: 0 8px 20px rgba(245, 245, 244, 0.15);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -170,14 +186,14 @@
 
         .btn-buy-secondary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(15, 23, 42, 0.25);
-            color: #ffffff;
+            box-shadow: 0 12px 25px rgba(245, 245, 244, 0.25);
+            color: #1c1917;
         }
 
         .btn-buy-outline {
             background: transparent;
             color: var(--fashion-text-muted);
-            border: 1px solid #e7e5e4;
+            border: 1px solid var(--fashion-border);
             font-weight: 600;
             border-radius: 50px;
             padding: 14px 28px;
@@ -190,15 +206,15 @@
 
         .btn-buy-outline:hover {
             transform: translateY(-2px);
-            background: #f5f5f4;
-            color: var(--fashion-text-main);
+            background: #292524;
+            color: #ffffff;
             border-color: var(--fashion-text-muted);
         }
 
         .fashion-tab.nav-link {
-            border: 1px solid #e7e5e4;
-            background: #ffffff;
-            color: var(--fashion-text-muted);
+            border: 1px solid var(--fashion-border) !important;
+            background: var(--fashion-card-bg) !important;
+            color: var(--fashion-text-muted) !important;
             border-radius: 16px;
             padding: 15px 25px;
             font-weight: 600;
@@ -211,25 +227,25 @@
 
         .fashion-tab.nav-link i {
             font-size: 18px;
-            color: var(--fashion-text-muted);
+            color: var(--fashion-text-muted) !important;
         }
 
         .fashion-tab.nav-link:hover {
             transform: translateY(-2px);
-            background: #fafaf9;
-            color: var(--fashion-primary);
-            border-color: rgba(244, 63, 94, 0.2);
+            background: #292524 !important;
+            color: var(--fashion-primary) !important;
+            border-color: rgba(251, 113, 133, 0.3) !important;
         }
 
         .fashion-tab.nav-link.active {
-            background: linear-gradient(135deg, var(--fashion-primary) 0%, var(--fashion-secondary) 100%);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 8px 20px var(--fashion-primary-glow);
+            background: linear-gradient(135deg, var(--fashion-primary) 0%, var(--fashion-secondary) 100%) !important;
+            color: white !important;
+            border-color: transparent !important;
+            box-shadow: 0 8px 20px var(--fashion-primary-glow) !important;
         }
 
         .fashion-tab.nav-link.active i {
-            color: white;
+            color: white !important;
         }
 
         .rating-input {
@@ -244,13 +260,93 @@
         .rating-input label {
             cursor: pointer;
             font-size: 28px;
-            color: #ddd;
+            color: #4b5563;
             transition: color 0.2s;
         }
         .rating-input label:hover,
         .rating-input label:hover ~ label,
         .rating-input input:checked ~ label {
             color: #ffc107;
+        }
+
+        /* --- DARK THEME OVERRIDES FOR GENERAL DOM ELEMENTS IN CONTAINER --- */
+        .fashion-wrapper .card {
+            background: var(--fashion-card-bg) !important;
+            border: 1px solid var(--fashion-border) !important;
+            color: var(--fashion-text-main) !important;
+        }
+        .fashion-wrapper .bg-light, 
+        .fashion-wrapper .card.bg-light {
+            background: #292524 !important;
+            border: 1px solid var(--fashion-border) !important;
+            color: var(--fashion-text-main) !important;
+        }
+        .fashion-wrapper .text-muted {
+            color: var(--fashion-text-muted) !important;
+        }
+        .fashion-wrapper h1, 
+        .fashion-wrapper h2, 
+        .fashion-wrapper h3, 
+        .fashion-wrapper h4, 
+        .fashion-wrapper h5, 
+        .fashion-wrapper h6, 
+        .fashion-wrapper strong {
+            color: var(--fashion-text-main) !important;
+        }
+        .fashion-wrapper .text-dark {
+            color: var(--fashion-text-main) !important;
+        }
+        .fashion-wrapper .text-primary {
+            color: var(--fashion-primary) !important;
+        }
+        .fashion-wrapper .breadcrumb-item a {
+            color: var(--fashion-primary) !important;
+        }
+        .fashion-wrapper .breadcrumb-item a:hover {
+            color: #ffffff !important;
+            text-decoration: underline !important;
+        }
+        .fashion-wrapper .breadcrumb-item.active {
+            color: var(--fashion-text-muted) !important;
+        }
+        .fashion-wrapper .breadcrumb-item::before {
+            color: var(--fashion-text-muted) !important;
+        }
+        .fashion-wrapper .form-control {
+            background-color: rgba(28, 25, 23, 0.8) !important;
+            border: 1px solid var(--fashion-border) !important;
+            color: var(--fashion-text-main) !important;
+        }
+        .fashion-wrapper .form-control::placeholder {
+            color: #78716c !important;
+        }
+        .fashion-wrapper .form-control:focus {
+            background-color: var(--fashion-card-bg) !important;
+            border-color: var(--fashion-primary) !important;
+            box-shadow: 0 0 0 3px var(--fashion-primary-glow) !important;
+        }
+        .fashion-wrapper .border-bottom {
+            border-color: var(--fashion-border) !important;
+        }
+        .fashion-wrapper .alert-success {
+            background: rgba(16, 185, 129, 0.1) !important;
+            color: #34d399 !important;
+            border: none !important;
+        }
+        .fashion-wrapper .alert-danger {
+            background: rgba(239, 68, 68, 0.1) !important;
+            color: #f87171 !important;
+            border: none !important;
+        }
+        .fashion-wrapper .alert-info {
+            background: rgba(59, 130, 246, 0.1) !important;
+            color: #60a5fa !important;
+            border: none !important;
+        }
+        .fashion-wrapper .alert-warning {
+            background: rgba(245, 158, 11, 0.1) !important;
+            color: #fbbf24 !important;
+            border: none !important;
         }
 
         @media (max-width: 768px) {
@@ -330,13 +426,13 @@
             
             <div class="col-lg-6" data-aos="fade-left">
                 <div class="fashion-card">
-                    <span class="badge mb-3" style="font-size: 13px; font-weight: 700; background: rgba(244, 63, 94, 0.08); color: var(--fashion-primary); border-radius: 30px; padding: 6px 16px; border: 1px solid rgba(244, 63, 94, 0.12);">
+                    <span class="badge mb-3" style="font-size: 13px; font-weight: 700; background: rgba(251, 113, 133, 0.12); color: var(--fashion-primary); border-radius: 30px; padding: 6px 16px; border: 1px solid rgba(251, 113, 133, 0.2);">
                         <i class="fas fa-tshirt me-1"></i> {{ strtoupper($product->category) }}
                     </span>
                     <h1 class="fw-bold mb-3" style="color: var(--fashion-text-main); font-size: 2rem;">{{ $product->name }}</h1>
                     <p class="lead text-muted mb-4" style="font-size: 1rem; line-height: 1.6;">{{ Str::limit($product->description, 150, '......') }}</p>
                     
-                    <div class="mb-4 p-4 rounded-4" style="background: rgba(244, 63, 94, 0.03); border: 1px solid rgba(244, 63, 94, 0.06);">
+                    <div class="mb-4 p-4 rounded-4" style="background: rgba(251, 113, 133, 0.05); border: 1px solid rgba(251, 113, 133, 0.1);">
                         <div class="d-flex align-items-end gap-3 flex-wrap">
                             <h2 class="fw-bold mb-0" style="color: var(--fashion-primary); font-size: 2.2rem;">{{ $product->formatted_price }}</h2>
                             @if($product->is_on_sale)
@@ -379,13 +475,13 @@
                     
                     @if($product->stock > 0)
                         <div class="d-flex align-items-center flex-wrap gap-2 mb-4">
-                            <div class="alert alert-success d-inline-flex align-items-center mb-0 py-2 px-3 border-0" style="background: rgba(16, 185, 129, 0.08); color: #10b981; border-radius: 12px; font-weight: 600;">
+                            <div class="alert alert-success d-inline-flex align-items-center mb-0 py-2 px-3 border-0" style="font-weight: 600;">
                                 <i class="fas fa-check-circle me-2"></i> Còn hàng ({{ $product->stock }} sản phẩm)
                             </div>
                             <small class="text-muted"><i class="far fa-clock me-1"></i>Chuẩn bị hàng nhanh chóng</small>
                         </div>
                     @else
-                        <div class="alert alert-danger d-inline-flex align-items-center mb-4 py-2 px-3 border-0" style="background: rgba(239, 68, 68, 0.08); color: #ef4444; border-radius: 12px; font-weight: 600;">
+                        <div class="alert alert-danger d-inline-flex align-items-center mb-4 py-2 px-3 border-0" style="font-weight: 600;">
                             <i class="fas fa-times-circle me-2"></i> Hết hàng
                         </div>
                     @endif
@@ -509,7 +605,7 @@
                             <h4 class="fw-bold mb-4" style="color: var(--fashion-text-main);">
                                 <i class="fas fa-book text-danger me-2"></i>Hướng Dẫn Sử Dụng & Bảo Quản
                             </h4>
-                            <div class="description-content mb-4" style="line-height: 1.8; color: #334155;">{!! nl2br(e($product->description)) !!}</div>
+                            <div class="description-content mb-4" style="line-height: 1.8; color: #d1d5db;">{!! nl2br(e($product->description)) !!}</div>
                             
                             <div class="row g-4">
                                 <div class="col-md-6">
@@ -536,7 +632,7 @@
                                 </div>
                             </div>
 
-                            <div class="alert rounded-4 mt-4 border-0" style="background: rgba(244, 63, 94, 0.08); color: var(--fashion-primary); border-radius: 16px; font-weight: 600;">
+                            <div class="alert rounded-4 mt-4 border-0" style="font-weight: 600;">
                                 <i class="fas fa-exchange-alt me-2"></i>
                                 <strong>Chính sách đổi trả:</strong> Đổi size miễn phí trong vòng 7 ngày kể từ lúc nhận hàng nếu sản phẩm còn nguyên tem mác.
                             </div>

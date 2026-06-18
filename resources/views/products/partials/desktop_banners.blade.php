@@ -3,12 +3,12 @@
         margin-top: 25px;
     }
     .desktop-banner-card {
-        background: #ffffff;
+        background: var(--banner-card-bg, #ffffff);
         border-radius: 16px;
         padding: 20px 10px;
         text-align: center;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: var(--banner-card-shadow, 0 10px 25px rgba(0, 0, 0, 0.05));
+        border: 1px solid var(--banner-card-border, rgba(0, 0, 0, 0.05));
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         height: 100%;
         display: flex;
@@ -18,8 +18,8 @@
     }
     .desktop-banner-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        border-color: rgba(0, 104, 255, 0.2);
+        box-shadow: var(--banner-card-hover-shadow, 0 15px 30px rgba(0, 0, 0, 0.1));
+        border-color: var(--banner-card-hover-border, rgba(0, 104, 255, 0.2));
     }
     .banner-icon-circle {
         width: 54px;
@@ -36,39 +36,39 @@
     }
     /* Group Zalo Colors */
     .zalo-group-card .banner-icon-circle {
-        background-color: #e6f0ff;
+        background-color: var(--banner-icon-bg-zalo, #e6f0ff);
     }
     .zalo-group-card .banner-icon-circle i {
-        color: #0068ff;
+        color: var(--banner-icon-color-zalo, #0068ff);
         font-size: 22px;
     }
     /* Fanpage Colors */
     .fanpage-card .banner-icon-circle {
-        background-color: #e7f3ff;
+        background-color: var(--banner-icon-bg-fb, #e7f3ff);
     }
     .fanpage-card .banner-icon-circle i {
-        color: #1877f2;
+        color: var(--banner-icon-color-fb, #1877f2);
         font-size: 22px;
     }
     /* Admin Zalo Colors */
     .zalo-admin-card .banner-icon-circle {
-        background-color: #e8f8f5;
+        background-color: var(--banner-icon-bg-admin, #e8f8f5);
     }
     .zalo-admin-card .banner-icon-circle i {
-        color: #07be9e;
+        color: var(--banner-icon-color-admin, #07be9e);
         font-size: 22px;
     }
     .banner-title {
         font-weight: 700;
         font-size: 14px;
-        color: #2d3748;
+        color: var(--banner-card-title, #2d3748);
         margin-bottom: 4px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
     .banner-subtitle {
         font-size: 12px;
-        color: #718096;
+        color: var(--banner-card-subtitle, #718096);
         line-height: 1.4;
     }
 </style>
