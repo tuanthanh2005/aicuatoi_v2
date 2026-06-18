@@ -313,21 +313,21 @@ Route::prefix('cong-tac-vien')->group(function () {
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
 // Test email route
-Route::get('/test-email', function() {
-    $order = \App\Models\Order::first();
-    if (!$order) {
-        return 'Không tìm thấy đơn hàng nào để test';
-    }
-    
-    try {
-        \Illuminate\Support\Facades\Mail::to($order->customer_email)->send(
-            new \App\Mail\OrderCompletedMail($order, 'testuser_demo_' . $order->id, 'Cudanmangorg_1')
-        );
-        return 'Email đã được gửi đến: ' . $order->customer_email;
-    } catch (\Exception $e) {
-        return 'Lỗi: ' . $e->getMessage();
-    }
-});
+// Route::get('/test-email', function() {
+//     $order = \App\Models\Order::first();
+//     if (!$order) {
+//         return 'Không tìm thấy đơn hàng nào để test';
+//     }
+//     
+//     try {
+//         \Illuminate\Support\Facades\Mail::to($order->customer_email)->send(
+//             new \App\Mail\OrderCompletedMail($order, 'testuser_demo_' . $order->id, 'Cudanmangorg_1')
+//         );
+//         return 'Email đã được gửi đến: ' . $order->customer_email;
+//     } catch (\Exception $e) {
+//         return 'Lỗi: ' . $e->getMessage();
+//     }
+// });
 
 // Auto-Matching Dynamic SEO Router
 Route::get('/go/{slug}', [\App\Http\Controllers\SeoRouterController::class, 'handle'])->name('seo.router');

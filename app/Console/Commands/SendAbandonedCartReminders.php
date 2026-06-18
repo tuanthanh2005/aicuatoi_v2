@@ -51,7 +51,7 @@ class SendAbandonedCartReminders extends Command
             }
 
             try {
-                Mail::to($cart->email)->send(new AbandonedCartReminderMail($cart, $stage));
+                // Mail::to($cart->email)->send(new AbandonedCartReminderMail($cart, $stage));
                 $cart->reminder_stage = $stage + 1;
                 $cart->last_reminder_at = $now;
                 $cart->save();

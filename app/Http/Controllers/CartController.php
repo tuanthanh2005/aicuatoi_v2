@@ -325,8 +325,8 @@ class CartController extends Controller
                     }
                     if ($email) {
                         $order->load('orderItems.product');
-                        Mail::to($email)->send(new OrderApprovedMail($order));
-                        \Log::info('Auto-approved order email sent to ' . $email . ' for order #' . $order->id);
+                        // Mail::to($email)->send(new OrderApprovedMail($order));
+                        \Log::info('Auto-approved order email skipped (disabled) for order #' . $order->id);
                     }
                 } catch (\Exception $e) {
                     \Log::error('Error sending auto-approved order email for order #' . $order->id . ': ' . $e->getMessage());

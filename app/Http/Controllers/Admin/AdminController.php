@@ -218,7 +218,7 @@ class AdminController extends Controller
         foreach ($carts as $cart) {
             try {
                 if ($cart->email) {
-                    Mail::to($cart->email)->send(new AbandonedCartReminder($cart, $request->message));
+                    // Mail::to($cart->email)->send(new AbandonedCartReminder($cart, $request->message));
                     
                     // Cập nhật số lần nhắc nhở
                     $cart->increment('reminder_stage');
@@ -260,7 +260,7 @@ class AdminController extends Controller
         foreach ($users as $user) {
             try {
                 if ($user->email) {
-                    Mail::to($user->email)->send(new SystemNotificationMail($user, $request->subject, $request->message));
+                    // Mail::to($user->email)->send(new SystemNotificationMail($user, $request->subject, $request->message));
                     $successCount++;
                 }
             } catch (\Exception $e) {
@@ -426,8 +426,8 @@ class AdminController extends Controller
 
             if ($email) {
                 $order->load('orderItems.product');
-                Mail::to($email)->send(new OrderApprovedMail($order));
-                \Log::info('Order approved email sent to ' . $email . ' for order #' . $order->id);
+                // Mail::to($email)->send(new OrderApprovedMail($order));
+                \Log::info('Order approved email skipped (disabled) for order #' . $order->id);
             }
         } catch (\Exception $e) {
             \Log::error('Error sending order approved email for order #' . $order->id . ': ' . $e->getMessage());
