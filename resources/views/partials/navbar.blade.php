@@ -1,0 +1,336 @@
+@php
+    $menuHome        = \App\Models\SiteSetting::getValue('menu_home', '1') === '1';
+    $menuShop        = \App\Models\SiteSetting::getValue('menu_shop', '1') === '1';
+    $menuBlog        = \App\Models\SiteSetting::getValue('menu_blog', '1') === '1';
+    $menuCart        = \App\Models\SiteSetting::getValue('menu_cart', '1') === '1';
+    $menuChat        = \App\Models\SiteSetting::getValue('menu_chat', '1') === '1';
+    $menuZaloGroup   = \App\Models\SiteSetting::getValue('menu_zalo_group', '1') === '1';
+@endphp
+
+<nav class="navbar navbar-expand-xl navbar-techfeed sticky-top" id="mainNavbar">
+    <div class="container-fluid px-3">
+        {{-- Logo --}}
+        <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
+            <div class="brand-icon">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <span>AiCuaToi<span class="brand-dot">.com</span></span>
+        </a>
+
+        {{-- Desktop Nav Links --}}
+        <div class="d-none d-xl-flex align-items-center gap-2 mx-auto desktop-nav-links" style="font-size: 14.5px;">
+            @if($menuHome)
+            <a href="{{ route('home') }}" class="nav-text-link {{ request()->routeIs('home') ? 'active' : '' }}">
+                {{ __('Trang chủ') }}
+            </a>
+            @endif
+            @if($menuShop)
+            <a href="{{ route('shop') }}" class="nav-text-link {{ request()->routeIs('shop') ? 'active' : '' }}">
+                {{ __('Cửa hàng') }}
+            </a>
+            @endif
+            @if($menuBlog)
+            <a href="{{ route('blog.index') }}" class="nav-text-link {{ request()->routeIs('blog.*') ? 'active' : '' }}">
+                {{ __('Blog') }}
+            </a>
+            @endif
+            @if($menuZaloGroup)
+            <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" target="_blank" class="nav-text-link fw-bold" style="color: #0068ff;">
+                {{ __('Nhóm Zalo') }}
+            </a>
+            @endif
+            <a href="javascript:void(0)" class="nav-text-link" data-bs-toggle="modal" data-bs-target="#quickContactModal">
+                {{ __('Liên hệ') }}
+            </a>
+        </div>
+
+        {{-- Compact menu for small laptops/tablets --}}
+        <div class="dropdown d-none d-lg-block d-xl-none ms-auto me-2">
+            <button class="nav-icon-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Mở menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-techfeed">
+                @if($menuHome)
+                    <li><a class="dropdown-item" href="{{ route('home') }}"><i class="fa-solid fa-house me-2 text-primary"></i>{{ __('Trang chủ') }}</a></li>
+                @endif
+                @if($menuShop)
+                    <li><a class="dropdown-item" href="{{ route('shop') }}"><i class="fa-solid fa-store me-2 text-primary"></i>{{ __('Cửa hàng') }}</a></li>
+                @endif
+                @if($menuBlog)
+                    <li><a class="dropdown-item" href="{{ route('blog.index') }}"><i class="fa-solid fa-newspaper me-2 text-primary"></i>{{ __('Blog') }}</a></li>
+                @endif
+                <li><hr class="dropdown-divider"></li>
+                @if($menuZaloGroup)
+                <li><a class="dropdown-item fw-bold" href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" target="_blank" style="color: #0068ff;"><i class="fa-solid fa-users me-2"></i>{{ __('Nhóm Zalo') }}</a></li>
+                @endif
+                <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quickContactModal"><i class="fa-solid fa-headset me-2 text-primary"></i>{{ __('Liên hệ') }}</a></li>
+            </ul>
+        </div>
+
+        {{-- Search Bar (desktop) --}}
+        <div class="d-none d-xl-flex search-bar-wrap align-items-center ms-auto me-3" style="max-width: 250px;">
+            <form class="search-bar-inner w-100" action="{{ route('shop') }}" method="GET" style="border: 1.5px solid var(--brand); background-color: #fff;">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" name="search" class="search-input w-100" 
+                       placeholder="{{ __('Tìm kiếm sản phẩm...') }}"
+                       value="{{ request('search') }}">
+            </form>
+        </div>
+
+        {{-- Right Actions --}}
+        <div class="d-flex align-items-center gap-2 gap-sm-3">
+            {{-- Language Switcher --}}
+            <div class="dropdown">
+                <button class="nav-icon-btn d-flex align-items-center justify-content-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="{{ __('Ngôn ngữ') }}" style="padding: 6px 12px; font-size: 14px; border-radius: 20px;">
+                    @if(app()->getLocale() === 'en')
+                        🇺🇸 <span class="d-none d-md-inline ms-1 fw-bold" style="font-size: 12px;">EN</span>
+                    @else
+                        🇻🇳 <span class="d-none d-md-inline ms-1 fw-bold" style="font-size: 12px;">VI</span>
+                    @endif
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow-techfeed" style="min-width: 120px; border: none; border-radius: 12px;">
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center gap-2 {{ app()->getLocale() === 'vi' ? 'active' : '' }}" href="{{ route('change-language', 'vi') }}" style="font-size: 13.5px;">
+                            <span>🇻🇳</span> Tiếng Việt
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center gap-2 {{ app()->getLocale() === 'en' ? 'active' : '' }}" href="{{ route('change-language', 'en') }}" style="font-size: 13.5px;">
+                            <span>🇺🇸</span> English
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            {{-- Cart --}}
+            @if($menuCart)
+            <a href="{{ route('cart.index') }}" class="nav-icon-btn position-relative" aria-label="{{ __('Giỏ hàng') }}">
+                <i class="fa-solid fa-cart-shopping"></i>
+                @php $cartCount = count(session('cart', [])); @endphp
+                @if($cartCount > 0)
+                    <span class="nav-badge">{{ $cartCount }}</span>
+                @endif
+            </a>
+            @endif
+
+            {{-- Mobile/Tablet Search --}}
+            <button class="nav-icon-btn d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileSearchBar" aria-label="{{ __('Tìm kiếm') }}">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            {{-- User Menu --}}
+            @auth
+                <div class="dropdown">
+                    <button class="user-avatar-btn" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="user-initial">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-techfeed">
+                        <li class="px-3 py-2 border-bottom">
+                            <div class="fw-bold text-sm">{{ Auth::user()->name }}</div>
+                            <div class="text-muted" style="font-size:0.78rem;">{{ Auth::user()->email }}</div>
+                        </li>
+                        @if(Auth::user()->role === 'admin')
+                            <li><a class="dropdown-item" href="/admin"><i class="fas fa-tachometer-alt me-2 text-primary"></i>{{ __('Dashboard Admin') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.menu-settings') }}"><i class="fas fa-sliders-h me-2 text-warning"></i>{{ __('Quản lý Menu') }}</a></li>
+
+                        @endif
+                        @if(Auth::guard('affiliate')->check())
+                            <li><a class="dropdown-item fw-bold text-primary" href="{{ route('affiliate.dashboard') }}"><i class="fas fa-handshake me-2"></i>{{ __('Dashboard CTV') }}</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                        @else
+                            <li><a class="dropdown-item" href="{{ route('affiliate.login') }}"><i class="fas fa-handshake me-2"></i>{{ __('Đăng ký CTV') }}</a></li>
+                        @endif
+                        <li><a class="dropdown-item" href="{{ route('home') }}"><i class="fa-solid fa-house me-2 text-primary"></i>{{ __('Trang chủ') }}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('shop') }}"><i class="fa-solid fa-store me-2 text-primary"></i>{{ __('Cửa hàng') }}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('blog.index') }}"><i class="fa-solid fa-newspaper me-2 text-primary"></i>{{ __('Blog') }}</a></li>
+                        <li><a class="dropdown-item fw-bold" href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" target="_blank" style="color: #0068ff;"><i class="fas fa-users me-2"></i>{{ __('Nhóm Zalo') }}</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quickContactModal"><i class="fa-solid fa-headset me-2 text-primary"></i>{{ __('Liên hệ') }}</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('user.account') }}"><i class="fas fa-user me-2"></i>{{ __('Tài khoản') }}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('user.orders') }}"><i class="fas fa-box me-2"></i>{{ __('Đơn hàng') }}</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>{{ __('Đăng xuất') }}</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                <a href="{{ route('login') }}" class="nav-icon-btn" title="{{ __('Đăng nhập') }}" aria-label="{{ __('Đăng nhập') }}">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </a>
+            @endauth
+        </div>
+    </div>
+
+    {{-- Mobile Search Bar (collapsed) --}}
+    <div class="collapse w-100" id="mobileSearchBar">
+        <div class="px-3 pb-2">
+            <form class="search-bar-inner w-100" action="{{ route('shop') }}" method="GET" style="border: 1.5px solid var(--brand); background-color: #fff;">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" name="search" class="search-input" placeholder="{{ __('Tìm kiếm...') }}" value="{{ request('search') }}">
+            </form>
+        </div>
+    </div>
+</nav>
+
+{{-- Mobile Bottom Nav --}}
+<nav class="mobile-bottom-nav d-lg-none">
+    @if($menuHome)
+    <a href="{{ route('home') }}" class="mobile-nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
+        <i class="fa-solid fa-house"></i>
+        <span>{{ __('Trang chủ') }}</span>
+    </a>
+    @endif
+    @if($menuShop)
+    <a href="{{ route('shop') }}" class="mobile-nav-item {{ request()->routeIs('shop') ? 'active' : '' }}">
+        <i class="fa-solid fa-store"></i>
+        <span>{{ __('Cửa hàng') }}</span>
+    </a>
+    @endif
+    <a href="https://zalo.me/0772698113" target="_blank" class="mobile-nav-item">
+        <i class="fa-solid fa-headset"></i>
+        <span>{{ __('Hỗ trợ') }}</span>
+    </a>
+    @if($menuCart)
+    <a href="{{ route('cart.index') }}" class="mobile-nav-item position-relative {{ request()->routeIs('cart.*') ? 'active' : '' }}">
+        <i class="fa-solid fa-cart-shopping"></i>
+        @if(isset($cartCount) && $cartCount > 0)
+            <span class="nav-badge">{{ $cartCount }}</span>
+        @endif
+        <span>{{ __('Giỏ hàng') }}</span>
+    </a>
+    @endif
+    @auth
+    @if($menuChat)
+    <a href="{{ route('user.orders') }}" class="mobile-nav-item {{ request()->routeIs('user.orders') ? 'active' : '' }}">
+        <i class="fa-solid fa-box"></i>
+        <span>{{ __('Đơn hàng') }}</span>
+    </a>
+    @endif
+    @endauth
+    <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" target="_blank" class="mobile-nav-item">
+        <i class="fa-solid fa-users" style="color: #0068ff;"></i>
+        <span style="color: #0068ff; font-weight: bold;">{{ __('Nhóm') }}</span>
+    </a>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateUnreadChat() {
+            fetch('{{ route('chat.unread-count') }}')
+                .then(res => res.json())
+                .then(data => {
+                    const badges = [document.getElementById('navChatBadge'), document.getElementById('mobileChatBadge')];
+                    badges.forEach(badge => {
+                        if (badge) {
+                            if (data.unread > 0) {
+                                badge.textContent = data.unread;
+                                badge.style.display = 'inline-block';
+                            } else {
+                                badge.style.display = 'none';
+                            }
+                        }
+                    });
+                })
+                .catch(err => console.error('Chat unread count error:', err));
+        }
+
+        @auth
+            updateUnreadChat();
+            setInterval(updateUnreadChat, 10000); // Check every 10s
+        @endauth
+    });
+</script>
+
+{{-- Quick Contact Modal --}}
+<div class="modal fade" id="quickContactModal" tabindex="-1" aria-labelledby="quickContactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 480px;">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 20px; overflow: hidden; background: #ffffff;">
+            {{-- Header --}}
+            <div class="modal-header border-0 text-white px-4 py-3 position-relative d-flex align-items-center justify-content-between" style="background: linear-gradient(135deg, var(--brand) 0%, var(--primary) 100%);">
+                <div>
+                    <h5 class="modal-title fw-bold d-flex align-items-center gap-2 mb-0" id="quickContactModalLabel" style="font-size: 18px;">
+                        <i class="fa-solid fa-headset"></i>
+                        Liên hệ & Nhắn tin nhanh
+                    </h5>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="opacity: 0.8; filter: invert(1) grayscale(1) brightness(2);"></button>
+            </div>
+            
+            {{-- Body --}}
+            <div class="modal-body p-4" style="background-color: #f8f9fa;">
+                <div class="d-flex flex-column gap-3">
+                    
+                    {{-- Item 1: Zalo Group --}}
+                    <a href="{{ \App\Models\SiteSetting::getValue('zalo_group_link', 'https://zalo.me/g/ptarfhnomeuotiyk7cot') }}" 
+                       target="_blank" 
+                       class="d-flex align-items-center gap-3 p-3 text-decoration-none bg-white rounded-3 contact-modal-item"
+                       style="border: 1px solid #e5e7eb; transition: all 0.2s ease;">
+                        <div class="contact-modal-icon-wrap d-flex align-items-center justify-content-center" 
+                             style="width: 48px; height: 48px; border-radius: 12px; background: #e6f0ff; color: #0068ff; min-width: 48px; font-size: 18px;">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="flex-grow-1 text-start">
+                            <h6 class="fw-bold mb-1" style="color: #1f2937; font-size: 14px;">GROUP ZALO HỖ TRỢ</h6>
+                            <p class="mb-0 text-muted" style="font-size: 12px;">Tham gia nhóm hỗ trợ thành viên</p>
+                        </div>
+                        <div style="color: #9ca3af;"><i class="fa-solid fa-chevron-right"></i></div>
+                    </a>
+
+                    {{-- Item 2: Fanpage --}}
+                    <a href="https://www.facebook.com/profile.php?id=61589359706008" 
+                       target="_blank" 
+                       class="d-flex align-items-center gap-3 p-3 text-decoration-none bg-white rounded-3 contact-modal-item"
+                       style="border: 1px solid #e5e7eb; transition: all 0.2s ease;">
+                        <div class="contact-modal-icon-wrap d-flex align-items-center justify-content-center" 
+                             style="width: 48px; height: 48px; border-radius: 12px; background: #e7f3ff; color: #1877f2; min-width: 48px; font-size: 18px;">
+                            <i class="fa-brands fa-facebook"></i>
+                        </div>
+                        <div class="flex-grow-1 text-start">
+                            <h6 class="fw-bold mb-1" style="color: #1f2937; font-size: 14px;">FANPAGE FACEBOOK</h6>
+                            <p class="mb-0 text-muted" style="font-size: 12px;">Gửi tin nhắn qua Fanpage chính thức</p>
+                        </div>
+                        <div style="color: #9ca3af;"><i class="fa-solid fa-chevron-right"></i></div>
+                    </a>
+
+                    {{-- Item 3: Admin Zalo --}}
+                    <a href="https://zalo.me/0772698113" 
+                       target="_blank" 
+                       class="d-flex align-items-center gap-3 p-3 text-decoration-none bg-white rounded-3 contact-modal-item"
+                       style="border: 1px solid #e5e7eb; transition: all 0.2s ease;">
+                        <div class="contact-modal-icon-wrap d-flex align-items-center justify-content-center" 
+                             style="width: 48px; height: 48px; border-radius: 12px; background: #e8f8f5; color: #07be9e; min-width: 48px; font-size: 18px;">
+                            <i class="fa-solid fa-comment-dots"></i>
+                        </div>
+                        <div class="flex-grow-1 text-start">
+                            <h6 class="fw-bold mb-1" style="color: #1f2937; font-size: 14px;">CHAT ZALO ADMIN</h6>
+                            <p class="mb-0 text-muted" style="font-size: 12px;">Zalo liên hệ: 0772698113</p>
+                        </div>
+                        <div style="color: #9ca3af;"><i class="fa-solid fa-chevron-right"></i></div>
+                    </a>
+
+                </div>
+            </div>
+            
+            {{-- Footer --}}
+            <div class="modal-footer border-0 justify-content-center py-2" style="background-color: #f1f3f5;">
+                <span class="text-muted" style="font-size: 11px; font-weight: 500;">AiCuaToi.com hân hạnh hỗ trợ!</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .contact-modal-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+        border-color: rgba(79, 70, 229, 0.25) !important;
+        background-color: #fafbfc !important;
+    }
+    .contact-modal-item:hover .contact-modal-icon-wrap {
+        transform: scale(1.05);
+    }
+</style>
