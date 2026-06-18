@@ -93,25 +93,6 @@
         </div>
     </div>
 
-    @if(!empty($topicLinks))
-    <div class="blog-topic-section" data-aos="fade-up" data-aos-delay="100">
-        <div class="blog-topic-title">
-            <i class="fas fa-bolt text-warning me-2"></i>Chủ đề nổi bật
-        </div>
-        <div class="blog-topic-links">
-            @foreach($topicLinks as $topicSlug => $topic)
-                <a href="{{ route('blog.topic', $topicSlug) }}"
-                   class="blog-topic-chip {{ request()->routeIs('blog.topic') && request()->route('topic') === $topicSlug ? 'active' : '' }}">
-                    {{ $topic['label'] }}
-                </a>
-            @endforeach
-        </div>
-        <button type="button" class="blog-topic-toggle" aria-label="Xem thêm chủ đề" aria-expanded="false">
-            <i class="fas fa-chevron-down"></i>
-        </button>
-    </div>
-    @endif
-
     <div class="row">
         @forelse($blogs as $blog)
         <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
@@ -153,6 +134,25 @@
             {{ $blogs->links() }}
         </div>
     </div>
+
+    @if(!empty($topicLinks))
+    <div class="blog-topic-section mt-5" data-aos="fade-up" data-aos-delay="100">
+        <div class="blog-topic-title">
+            <i class="fas fa-bolt text-warning me-2"></i>Chủ đề nổi bật
+        </div>
+        <div class="blog-topic-links">
+            @foreach($topicLinks as $topicSlug => $topic)
+                <a href="{{ route('blog.topic', $topicSlug) }}"
+                   class="blog-topic-chip {{ request()->routeIs('blog.topic') && request()->route('topic') === $topicSlug ? 'active' : '' }}">
+                    {{ $topic['label'] }}
+                </a>
+            @endforeach
+        </div>
+        <button type="button" class="blog-topic-toggle" aria-label="Xem thêm chủ đề" aria-expanded="false">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+    @endif
 </div>
 @endsection
 

@@ -32,51 +32,194 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <style>
-        .product-detail-image {
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+        :root {
+            --emerald-primary: #10b981;
+            --emerald-primary-glow: rgba(16, 185, 129, 0.15);
+            --emerald-secondary: #475569;
+            --emerald-bg: #f8fafc;
+            --emerald-card-bg: #ffffff;
+            --emerald-text-main: #0f172a;
+            --emerald-text-muted: #64748b;
+            --emerald-border: #e2e8f0;
         }
-        .description-content {
-            font-size: 1rem;
+
+        .emerald-wrapper {
+            background-color: var(--emerald-bg);
+            background-image: radial-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 0), radial-gradient(rgba(71, 85, 105, 0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+            padding: 50px 0;
+            min-height: 100vh;
         }
-        .product-detail-image:hover {
-            transform: scale(1.02);
-        }
-        .info-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .info-badge i {
-            font-size: 1.5rem;
-            margin-right: 15px;
-        }
-        .nav-tabs .nav-link {
-            border: none;
-            background: white;
-            margin: 0 5px;
-            border-radius: 12px;
-            padding: 15px 30px;
-            color: #6c757d;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+        .emerald-card {
+            background: var(--emerald-card-bg);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01);
+            border: 1px solid var(--emerald-border);
             transition: all 0.3s ease;
         }
-        .nav-tabs .nav-link:hover {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+
+        .emerald-card:hover {
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.04);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .product-detail-image {
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--emerald-border);
+        }
+
+        .product-detail-image:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.08);
+        }
+
+        .info-badge {
+            background: rgba(16, 185, 129, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.08);
+            color: var(--emerald-text-main);
+            padding: 16px 20px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            cursor: default;
+            transition: all 0.2s ease;
+        }
+
+        .info-badge:hover {
+            background: rgba(16, 185, 129, 0.06);
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102,126,234,0.3);
         }
-        .nav-tabs .nav-link.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        .info-badge i {
+            font-size: 1.8rem;
+            color: var(--emerald-primary);
+            margin-right: 18px;
+            flex-shrink: 0;
+        }
+
+        .btn-buy-primary {
+            background: linear-gradient(135deg, var(--emerald-primary) 0%, #059669 100%);
             color: white;
-            box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+            border: none;
+            font-weight: 700;
+            border-radius: 50px;
+            padding: 14px 30px;
+            box-shadow: 0 8px 20px var(--emerald-primary-glow);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
+
+        .btn-buy-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(16, 185, 129, 0.3);
+            color: white;
+        }
+
+        .btn-buy-secondary {
+            background: #facc15;
+            color: #0f172a;
+            border: none;
+            font-weight: 700;
+            border-radius: 50px;
+            padding: 14px 28px;
+            box-shadow: 0 8px 20px rgba(250, 204, 21, 0.2);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-buy-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(250, 204, 21, 0.35);
+            color: #0f172a;
+        }
+
+        .btn-buy-outline {
+            background: transparent;
+            color: var(--emerald-text-muted);
+            border: 1px solid var(--emerald-border);
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 14px 28px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-buy-outline:hover {
+            transform: translateY(-2px);
+            background: #f1f5f9;
+            color: var(--emerald-text-main);
+            border-color: var(--emerald-text-muted);
+        }
+
+        .emerald-tab.nav-link {
+            border: 1px solid var(--emerald-border);
+            background: #ffffff;
+            color: var(--emerald-text-muted);
+            border-radius: 16px;
+            padding: 15px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+        }
+
+        .emerald-tab.nav-link i {
+            font-size: 18px;
+            color: var(--emerald-text-muted);
+        }
+
+        .emerald-tab.nav-link:hover {
+            transform: translateY(-2px);
+            background: #f8fafc;
+            color: var(--emerald-primary);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .emerald-tab.nav-link.active {
+            background: linear-gradient(135deg, var(--emerald-primary) 0%, #059669 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 8px 20px var(--emerald-primary-glow);
+        }
+
+        .emerald-tab.nav-link.active i {
+            color: white;
+        }
+
+        .spec-item-box {
+            background: #f8fafc;
+            border: 1px solid var(--emerald-border);
+            border-radius: 16px;
+            padding: 18px 20px;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+        .spec-item-box:hover {
+            background: #ffffff;
+            border-color: rgba(16, 185, 129, 0.25);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.03);
+        }
+
         .rating-input {
             display: flex;
             flex-direction: row-reverse;
@@ -98,245 +241,221 @@
             color: #ffc107;
         }
 
-        /* --- MOBILE RESPONSIVE TWEAKS --- */
         @media (max-width: 768px) {
-            .container {
-                padding-left: 15px;
-                padding-right: 15px;
-                margin-top: 60px !important;
+            .emerald-wrapper {
+                padding: 20px 0;
+            }
+            .emerald-card {
+                padding: 20px;
+                border-radius: 18px;
             }
             .product-detail-image {
-                border-radius: 12px;
+                border-radius: 14px;
             }
             h1.fw-bold {
-                font-size: 1.4rem;
-                line-height: 1.4;
+                font-size: 1.5rem;
             }
             .lead.text-muted {
-                font-size: 0.95rem;
-                margin-bottom: 1.2rem !important;
+                font-size: 0.92rem;
             }
-            h2.text-primary {
-                font-size: 1.6rem;
-            }
-            
-            /* Buttons layout */
             .d-flex.gap-3.mb-3 {
-                gap: 10px !important;
+                gap: 12px !important;
                 flex-direction: column;
             }
-            .btn-lg {
-                padding: 12px 15px !important;
-                font-size: 1rem;
+            .btn-buy-primary, .btn-buy-secondary, .btn-buy-outline {
                 width: 100%;
-                border-radius: 12px !important;
+                padding: 12px 20px;
+                font-size: 0.95rem;
+                border-radius: 30px;
             }
-            
-            /* Badges */
-            .info-badge {
-                padding: 12px 15px;
-                border-radius: 10px;
-                flex-direction: row;
-                text-align: left;
-                gap: 10px;
-            }
-            .info-badge i {
-                margin-right: 0;
-                font-size: 1.4rem;
-            }
-            
-            /* Tabs responsive */
             .nav-tabs.nav-fill {
                 flex-wrap: nowrap;
                 overflow-x: auto;
-                padding-bottom: 5px;
+                padding-bottom: 8px;
                 -webkit-overflow-scrolling: touch;
             }
             .nav-tabs.nav-fill::-webkit-scrollbar {
                 display: none;
             }
-            .nav-tabs .nav-link {
-                padding: 10px 15px;
-                margin: 0 4px;
-                font-size: 0.85rem;
-                white-space: nowrap;
-                min-width: 120px;
+            .emerald-tab.nav-link {
+                padding: 12px 16px;
+                min-width: 110px;
+                border-radius: 12px;
             }
-            
-            /* Typography & Spacing inside cards */
-            .card-body {
-                padding: 1.2rem !important;
+            .info-badge {
+                padding: 14px 16px;
+                border-radius: 12px;
+                gap: 12px;
             }
-            .description-content {
-                font-size: 0.95rem;
-            }
-            .display-4 {
-                font-size: 2.2rem;
-            }
-            .rating-input label {
-                font-size: 24px;
+            .info-badge i {
+                font-size: 1.5rem;
             }
         }
     </style>
 @endpush
 
 @section('content')
-<div class="container py-2" style="margin-top: 50px;">
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb" class="mb-4" data-aos="fade-down">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('shop') }}">Cửa hàng</a></li>
-            <li class="breadcrumb-item active">{{ $product->name }}</li>
-        </ol>
-    </nav>
+<div class="emerald-wrapper">
+    <div class="container py-2" style="margin-top: 50px;">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-4" data-aos="fade-down">
+            <ol class="breadcrumb bg-transparent">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color: var(--emerald-primary); font-weight: 600; text-decoration: none;">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('shop') }}" style="color: var(--emerald-primary); font-weight: 600; text-decoration: none;">Cửa hàng</a></li>
+                <li class="breadcrumb-item active" style="color: var(--emerald-text-main); font-weight: 700;">{{ $product->name }}</li>
+            </ol>
+        </nav>
 
-    <div class="row">
-        <div class="col-lg-6 mb-4" data-aos="fade-right">
-            <img src="{{ $product->image ?? 'https://via.placeholder.com/600' }}" 
-                 class="img-fluid product-detail-image w-100" 
-                 alt="{{ $product->name }}">
-            @include('products.partials.desktop_banners')
-        </div>
-        
-        <div class="col-lg-6" data-aos="fade-left">
-            <span class="badge bg-primary mb-2">{{ strtoupper($product->category) }}</span>
-            <h1 class="fw-bold mb-3">{{ $product->name }}</h1>
-            <p class="lead text-muted mb-4">{{ Str::limit($product->description, 150, '......') }}</p>
-            
-            <div class="mb-4">
-                <div class="d-flex align-items-end gap-3 flex-wrap">
-                    <h2 class="text-primary fw-bold mb-0">{{ $product->formatted_price }}</h2>
-                    @if($product->is_on_sale)
-                        <div class="d-flex align-items-center gap-2 mb-1">
-                            <span class="text-muted text-decoration-line-through">{{ $product->formatted_original_price }}</span>
-                            <span class="badge bg-danger">-{{ $product->discount_percent }}%</span>
-                        </div>
-                    @endif
-                </div>
-                <small class="text-muted">Giá đã bao gồm VAT</small>
-            </div>
-            
-            @if($product->stock > 0)
-                <div class="d-flex align-items-center flex-wrap gap-2">
-                    <div class="alert alert-success d-inline-flex align-items-center mb-0">
-                        <i class="fas fa-check-circle"></i> Còn hàng ({{ $product->stock }} sản phẩm)
-                    </div>
-                    <small class="text-muted">Gia hạn theo tháng 3/6/12 tháng: liên hệ admin hoặc box chat</small>
-                </div>
-                @else
-                <div class="alert alert-danger d-inline-block">
-                    <i class="fas fa-times-circle"></i> Hết hàng
-                </div>
-            @endif
-            
-            <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-4">
-                @csrf
-                <div class="d-flex gap-3 mb-3 flex-wrap">
-                    <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow">
-                        <i class="fas fa-shopping-cart me-2"></i> Thêm vào giỏ
-                    </button>
-                    @if($product->delivery_type === 'digital')
-                    <button type="submit" formaction="{{ route('cart.buy-now', $product->id) }}" class="btn btn-warning btn-lg rounded-pill px-4 shadow">
-                        <i class="fas fa-bolt me-2"></i> Mua ngay
-                    </button>
-                    @endif
-                    <a href="{{ route('shop') }}" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
-                        <i class="fas fa-arrow-left me-2"></i> Tiếp tục mua
-                    </a>
-                </div>
-            </form>
-
-            <div class="mt-5">
-                <h5 class="fw-bold mb-3"><i class="fas fa-star text-warning"></i> Ưu điểm nổi bật</h5>
-                <div class="row g-2">
-                    <div class="col-md-6">
-                        <div class="info-badge">
-                            <i class="fas fa-shield-alt"></i>
-                            <div>
-                                <strong>Chính hãng 100%</strong><br>
-                                <small>Cam kết hàng thật</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="info-badge" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                            <i class="fas fa-tools"></i>
-                            <div>
-                                <strong>Bảo hành 12 tháng</strong><br>
-                                <small>Đổi trả miễn phí</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="info-badge" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                            <i class="fas fa-shipping-fast"></i>
-                            <div>
-                                <strong>Giao hàng nhanh</strong><br>
-                                <small>Toàn quốc 24h</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="info-badge" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-                            <i class="fas fa-headset"></i>
-                            <div>
-                                <strong>Hỗ trợ 24/7</strong><br>
-                                <small>Tư vấn miễn phí</small>
-                            </div>
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="col-lg-6 mb-4" data-aos="fade-right">
+                <div class="emerald-card">
+                    <img src="{{ $product->image ?? 'https://via.placeholder.com/600' }}" 
+                         class="img-fluid product-detail-image w-100" 
+                         alt="{{ $product->name }}">
+                    @include('products.partials.desktop_banners')
                 </div>
             </div>
+            
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="emerald-card">
+                    <span class="badge mb-3" style="font-size: 13px; font-weight: 700; background: rgba(16, 185, 129, 0.08); color: var(--emerald-primary); border-radius: 30px; padding: 6px 16px; border: 1px solid rgba(16, 185, 129, 0.12);">
+                        <i class="fas fa-cube me-1"></i> {{ strtoupper($product->category) }}
+                    </span>
+                    <h1 class="fw-bold mb-3" style="color: var(--emerald-text-main); font-size: 2rem;">{{ $product->name }}</h1>
+                    <p class="lead text-muted mb-4" style="font-size: 1rem; line-height: 1.6;">{{ Str::limit($product->description, 150, '......') }}</p>
+                    
+                    <div class="mb-4 p-4 rounded-4" style="background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.06);">
+                        <div class="d-flex align-items-end gap-3 flex-wrap">
+                            <h2 class="fw-bold mb-0" style="color: var(--emerald-primary); font-size: 2.2rem;">{{ $product->formatted_price }}</h2>
+                            @if($product->is_on_sale)
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="text-muted text-decoration-line-through" style="font-size: 1.1rem;">{{ $product->formatted_original_price }}</span>
+                                    <span class="badge bg-danger rounded-pill px-2.5 py-1" style="font-size: 0.8rem; font-weight: 700;">-{{ $product->discount_percent }}%</span>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="mt-2 text-muted" style="font-size: 0.82rem;"><i class="fas fa-info-circle me-1"></i>Giá đã bao gồm VAT</div>
+                    </div>
+                    
+                    @if($product->stock > 0)
+                        <div class="d-flex align-items-center flex-wrap gap-2 mb-4">
+                            <div class="alert alert-success d-inline-flex align-items-center mb-0 py-2 px-3 border-0" style="background: rgba(16, 185, 129, 0.08); color: #10b981; border-radius: 12px; font-weight: 600;">
+                                <i class="fas fa-check-circle me-2"></i> Còn hàng ({{ $product->stock }} sản phẩm)
+                            </div>
+                            <small class="text-muted"><i class="far fa-clock me-1"></i>Giao hàng nhanh chóng</small>
+                        </div>
+                    @else
+                        <div class="alert alert-danger d-inline-flex align-items-center mb-4 py-2 px-3 border-0" style="background: rgba(239, 68, 68, 0.08); color: #ef4444; border-radius: 12px; font-weight: 600;">
+                            <i class="fas fa-times-circle me-2"></i> Hết hàng
+                        </div>
+                    @endif
+                    
+                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                        @csrf
+                        <div class="d-flex gap-3 mb-3 flex-wrap">
+                            <button type="submit" class="btn btn-buy-primary shadow">
+                                <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                            </button>
+                            @if($product->delivery_type === 'digital')
+                            <button type="submit" formaction="{{ route('cart.buy-now', $product->id) }}" class="btn btn-buy-secondary shadow">
+                                <i class="fas fa-bolt"></i> Mua ngay
+                            </button>
+                            @endif
+                            <a href="{{ route('shop') }}" class="btn btn-buy-outline">
+                                <i class="fas fa-arrow-left"></i> Tiếp tục mua
+                            </a>
+                        </div>
+                    </form>
+
+                    <div class="mt-5">
+                        <h5 class="fw-bold mb-3"><i class="fas fa-star text-warning me-1"></i> Ưu điểm nổi bật</h5>
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <div class="info-badge">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <div>
+                                        <strong>Chính hãng 100%</strong><br>
+                                        <small class="text-muted">Cam kết chất lượng</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-badge">
+                                    <i class="fas fa-tools"></i>
+                                    <div>
+                                        <strong>Bảo hành 12 tháng</strong><br>
+                                        <small class="text-muted">Lỗi đổi mới hoàn toàn</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-badge">
+                                    <i class="fas fa-shipping-fast"></i>
+                                    <div>
+                                        <strong>Giao hàng siêu tốc</strong><br>
+                                        <small class="text-muted">Toàn quốc nhanh chóng</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-badge">
+                                    <i class="fas fa-headset"></i>
+                                    <div>
+                                        <strong>Hỗ trợ tận tâm</strong><br>
+                                        <small class="text-muted">Tư vấn, setup 24/7</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    
 
+        <!-- Tabs Section -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <ul class="nav nav-tabs nav-fill border-0 mb-4 gap-2" id="productTabs" role="tablist" data-aos="fade-up">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link emerald-tab active" id="features-tab" data-bs-toggle="tab" 
+                                data-bs-target="#features" type="button" role="tab" style="width: 100%;">
+                            <i class="fas fa-star"></i>
+                            <span>Tính Năng</span>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link emerald-tab" id="description-tab" data-bs-toggle="tab" 
+                                data-bs-target="#description" type="button" role="tab" style="width: 100%;">
+                            <i class="fas fa-list-alt"></i>
+                            <span>Mô Tả</span>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link emerald-tab" id="reviews-tab" data-bs-toggle="tab" 
+                                data-bs-target="#reviews" type="button" role="tab" style="width: 100%;">
+                            <i class="fas fa-comments"></i>
+                            <span>Đánh Giá</span>
+                        </button>
+                    </li>
+                </ul>
 
-    <!-- Tabs Section -->
-    <div class="row mt-5">
-        <div class="col-12">
-            <ul class="nav nav-tabs nav-fill border-0" id="productTabs" role="tablist" data-aos="fade-up">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active fw-bold" id="features-tab" data-bs-toggle="tab" 
-                            data-bs-target="#features" type="button" role="tab">
-                        <i class="fas fa-star me-2"></i>Tính Năng Nổi Bật
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link fw-bold" id="description-tab" data-bs-toggle="tab" 
-                            data-bs-target="#description" type="button" role="tab">
-                        <i class="fas fa-align-left me-2"></i>Mô Tả Chi Tiết
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link fw-bold" id="reviews-tab" data-bs-toggle="tab" 
-                            data-bs-target="#reviews" type="button" role="tab">
-                        <i class="fas fa-comments me-2"></i>Đánh Giá Sản Phẩm
-                    </button>
-                </li>
-            </ul>
-
-            <div class="tab-content mt-4" id="productTabsContent">
-                <!-- Features Tab -->
-                <div class="tab-pane fade show active" id="features" role="tabpanel" data-aos="fade-up">
-                    <div class="card border-0 shadow-sm rounded-4">
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-4">
+                <div class="tab-content" id="productTabsContent">
+                    <!-- Features Tab -->
+                    <div class="tab-pane fade show active" id="features" role="tabpanel" data-aos="fade-up">
+                        <div class="emerald-card">
+                            <h4 class="fw-bold mb-4" style="color: var(--emerald-text-main);">
                                 <i class="fas fa-star text-warning me-2"></i>Tính Năng Nổi Bật
                             </h4>
                             @if($product->features && $product->features->count() > 0)
                                 <div class="row g-3">
                                     @foreach($product->features as $feature)
                                         <div class="col-md-6">
-                                            <div class="d-flex align-items-start mb-3">
-                                                <div class="me-3">
-                                                    <i class="{{ $feature->icon }} fs-4" style="color: {{ $feature->color }}"></i>
-                                                </div>
+                                            <div class="info-badge" style="border-left: 4px solid {{ $feature->color ?? 'var(--emerald-primary)' }};">
+                                                <i class="{{ $feature->icon }}" style="color: {{ $feature->color ?? 'var(--emerald-primary)' }};"></i>
                                                 <div>
-                                                    <h6 class="fw-bold mb-1">{{ $feature->name }}</h6>
+                                                    <strong style="color: var(--emerald-text-main);">{{ $feature->name }}</strong><br>
                                                     @if($feature->description)
-                                                        <p class="text-muted mb-0">{{ $feature->description }}</p>
+                                                        <small class="text-muted" style="font-size: 0.82rem;">{{ $feature->description }}</small>
                                                     @endif
                                                 </div>
                                             </div>
@@ -344,58 +463,54 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="alert alert-info mb-0">
+                                <div class="alert alert-info border-0" style="background: rgba(16, 185, 129, 0.08); color: var(--emerald-primary); border-radius: 12px;">
                                     <i class="fas fa-info-circle me-2"></i>
-                                    Chưa có thông tin tính năng cho sản phẩm này.
+                                    Chưa có thông tin tính năng nổi bật cho sản phẩm này.
                                 </div>
                             @endif
                         </div>
                     </div>
-                </div>
 
-                <!-- Description Tab -->
-                <div class="tab-pane fade" id="description" role="tabpanel" data-aos="fade-up">
-                    <div class="card border-0 shadow-sm rounded-4">
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-4">
+                    <!-- Description Tab -->
+                    <div class="tab-pane fade" id="description" role="tabpanel" data-aos="fade-up">
+                        <div class="emerald-card">
+                            <h4 class="fw-bold mb-4" style="color: var(--emerald-text-main);">
                                 <i class="fas fa-align-left text-primary me-2"></i>Mô Tả Chi Tiết
                             </h4>
-                            <div class="text-muted mb-4 description-content" style="line-height: 1.8;" >{{ $product->description }}</div>
+                            <div class="description-content mb-4" style="line-height: 1.8; color: #334155;">{{ $product->description }}</div>
                             
-                            <div class="border-top pt-4 mt-4">
-                                <h5 class="fw-bold text-primary mb-4">
-                                    <i class="fas fa-cube me-2"></i>Thông Số Kỹ Thuật
+                            <div class="border-top pt-4 mt-4" style="border-color: var(--emerald-border);">
+                                <h5 class="fw-bold mb-4" style="color: var(--emerald-text-main);">
+                                    <i class="fas fa-cube me-2 text-primary"></i>Thông Số Kỹ Thuật
                                 </h5>
-                                <div class="row g-4">
-                                    <div class="col-lg-6">
-                                        <div class="p-3 bg-light rounded-3 mb-3">
-                                            <i class="fas fa-list-ul text-primary me-2"></i><strong>Danh mục:</strong>
-                                            <p class="ms-4 mb-0 text-muted">{{ strtoupper($product->category) }}</p>
-                                        </div>
-                                        <div class="p-3 bg-light rounded-3 mb-3">
-                                            <i class="fas fa-barcode text-primary me-2"></i><strong>SKU:</strong>
-                                            <p class="ms-4 mb-0 text-muted">#{{ $product->id }}</p>
+                                <div class="row g-3">
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="spec-item-box">
+                                            <span class="text-muted" style="font-weight: 500;"><i class="fas fa-list-ul me-1"></i> Danh mục:</span>
+                                            <strong class="text-dark">{{ strtoupper($product->category) }}</strong>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="p-3 bg-light rounded-3 mb-3">
-                                            <i class="fas fa-check-circle text-success me-2"></i><strong>Tình trạng:</strong>
-                                            <p class="ms-4 mb-0 text-muted">{{ $product->stock > 0 ? 'Còn hàng' : 'Hết hàng' }}</p>
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="spec-item-box">
+                                            <span class="text-muted" style="font-weight: 500;"><i class="fas fa-barcode me-1"></i> SKU:</span>
+                                            <strong class="text-dark">#{{ $product->id }}</strong>
                                         </div>
-                                        <div class="p-3 bg-light rounded-3 mb-3">
-                                            <i class="fas fa-globe text-primary me-2"></i><strong>Xuất xứ:</strong>
-                                            <p class="ms-4 mb-0 text-muted">Chính hãng</p>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="spec-item-box">
+                                            <span class="text-muted" style="font-weight: 500;"><i class="fas fa-check-circle me-1"></i> Tình trạng:</span>
+                                            <strong class="text-dark">{{ $product->stock > 0 ? 'Còn hàng' : 'Hết hàng' }}</strong>
                                         </div>
                                     </div>
                                 </div>
 
                                 @if($product->specs)
-                                    <div class="row g-4 mt-2">
+                                    <div class="row g-3 mt-1">
                                         @foreach($product->specs as $key => $value)
-                                            <div class="col-lg-6">
-                                                <div class="p-3 bg-light rounded-3 mb-3">
-                                                    <i class="fas fa-info-circle text-primary me-2"></i><strong>{{ ucfirst(str_replace('_', ' ', $key)) }}:</strong>
-                                                    <p class="ms-4 mb-0 text-muted">{{ is_array($value) ? implode(', ', $value) : $value }}</p>
+                                            <div class="col-md-6 col-lg-4">
+                                                <div class="spec-item-box">
+                                                    <span class="text-muted" style="font-weight: 500;"><i class="fas fa-info-circle me-1"></i> {{ ucfirst(str_replace('_', ' ', $key)) }}:</span>
+                                                    <strong class="text-dark">{{ is_array($value) ? implode(', ', $value) : $value }}</strong>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -403,151 +518,46 @@
                                 @endif
                             </div>
 
-                            <div class="border-top pt-4 mt-4">
-                                <h5 class="fw-bold text-primary mb-4">
-                                    <i class="fas fa-box-open me-2"></i>Thông Tin Thêm
+                            <div class="border-top pt-4 mt-4" style="border-color: var(--emerald-border);">
+                                <h5 class="fw-bold mb-4" style="color: var(--emerald-text-main);">
+                                    <i class="fas fa-box-open me-2 text-primary"></i>Thông Tin Thêm
                                 </h5>
-                                <div class="row g-4">
-                                    <div class="col-lg-6">
-                                        <div class="p-3 bg-light rounded-3 mb-3">
-                                            <i class="fas fa-shield-alt text-primary me-2"></i><strong>Bảo hành:</strong>
-                                            <p class="ms-4 mb-0 text-muted">12 tháng</p>
-                                        </div>
-                                        <div class="p-3 bg-light rounded-3 mb-3">
-                                            <i class="fas fa-credit-card text-primary me-2"></i><strong>Thanh toán:</strong>
-                                            <p class="ms-4 mb-0 text-muted">COD, Banking, Transfer</p>
+                                <div class="row g-3">
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="spec-item-box">
+                                            <span class="text-muted" style="font-weight: 500;">Bảo hành:</span>
+                                            <strong class="text-dark">12 tháng</strong>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="p-3 bg-light rounded-3 mb-3">
-                                            <i class="fas fa-shipping-fast text-primary me-2"></i><strong>Giao hàng:</strong>
-                                            <p class="ms-4 mb-0 text-muted">Toàn quốc (24-48h)</p>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="spec-item-box">
+                                            <span class="text-muted" style="font-weight: 500;">Thanh toán:</span>
+                                            <strong class="text-dark">Banking, MoMo</strong>
                                         </div>
-                                        <div class="p-3 bg-light rounded-3 mb-3">
-                                            <i class="fas fa-undo text-primary me-2"></i><strong>Đổi trả:</strong>
-                                            <p class="ms-4 mb-0 text-muted">7 ngày từ ngày mua</p>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="spec-item-box">
+                                            <span class="text-muted" style="font-weight: 500;">Giao hàng:</span>
+                                            <strong class="text-dark">Toàn quốc / 24h</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="spec-item-box">
+                                            <span class="text-muted" style="font-weight: 500;">Đổi trả:</span>
+                                            <strong class="text-dark">7 ngày</strong>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="alert alert-info mt-4 rounded-4">
-                                <i class="fas fa-info-circle me-2"></i>
-                                <strong>Lưu ý:</strong> Sản phẩm được đóng gói cẩn thận, kiểm tra kỹ càng trước khi giao hàng. 
-                                Quý khách vui lòng kiểm tra sản phẩm trước khi thanh toán.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Reviews Tab -->
-                <div class="tab-pane fade" id="reviews" role="tabpanel" data-aos="fade-up">
-                    <div class="card border-0 shadow-sm rounded-4">
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-4">
-                                <i class="fas fa-comments text-warning me-2"></i>Đánh Giá Sản Phẩm
-                            </h4>
                             
-                            <!-- Overall Rating -->
-                            <div class="text-center mb-5 p-4 bg-light rounded-4">
-                                <div class="display-4 fw-bold text-primary mb-2">{{ number_format($averageRating, 1) }}</div>
-                                <div class="mb-2">
-                                    @for($i = 1; $i <= 5; $i++)
-                                        @if($i <= floor($averageRating))
-                                            <i class="fas fa-star text-warning"></i>
-                                        @elseif($i - $averageRating < 1)
-                                            <i class="fas fa-star-half-alt text-warning"></i>
-                                        @else
-                                            <i class="far fa-star text-warning"></i>
-                                        @endif
-                                    @endfor
-                                </div>
-                                <p class="text-muted mb-0">Dựa trên <strong>{{ $totalReviews }} đánh giá</strong></p>
-                            </div>
-
-                            <!-- Comment Form (Only for logged in users) -->
-                            @auth
-                            <div class="card bg-light border-0 mb-4 rounded-4">
-                                <div class="card-body p-4">
-                                    <h5 class="fw-bold mb-3">
-                                        <i class="fas fa-edit text-primary me-2"></i>Viết đánh giá của bạn
-                                    </h5>
-                                    <form action="{{ route('product.comment', $product->id) }}" method="POST">
-                                        @csrf
-                                        <div class="mb-3">
-                                            <label class="form-label fw-bold">Đánh giá của bạn <span class="text-danger">*</span></label>
-                                            <div class="rating-input mb-2">
-                                                <input type="radio" name="rating" value="5" id="star5" required>
-                                                <label for="star5" title="5 sao"><i class="fas fa-star"></i></label>
-                                                <input type="radio" name="rating" value="4" id="star4">
-                                                <label for="star4" title="4 sao"><i class="fas fa-star"></i></label>
-                                                <input type="radio" name="rating" value="3" id="star3">
-                                                <label for="star3" title="3 sao"><i class="fas fa-star"></i></label>
-                                                <input type="radio" name="rating" value="2" id="star2">
-                                                <label for="star2" title="2 sao"><i class="fas fa-star"></i></label>
-                                                <input type="radio" name="rating" value="1" id="star1">
-                                                <label for="star1" title="1 sao"><i class="fas fa-star"></i></label>
-                                            </div>
-                                            @error('rating')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label fw-bold">Nhận xét <span class="text-danger">*</span></label>
-                                            <textarea name="comment" class="form-control rounded-3" rows="4" 
-                                                      placeholder="Chia sẻ trải nghiệm của bạn về sản phẩm..." required>{{ old('comment') }}</textarea>
-                                            @error('comment')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                        <button type="submit" class="btn btn-primary rounded-pill px-4">
-                                            <i class="fas fa-paper-plane me-2"></i>Gửi đánh giá
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                            @else
-                            <div class="alert alert-info rounded-4 mb-4">
+                            <div class="alert alert-info mt-4 border-0 rounded-4" style="background: rgba(59, 130, 246, 0.08); color: #3b82f6; border-radius: 16px; font-weight: 600;">
                                 <i class="fas fa-info-circle me-2"></i>
-                                Bạn cần <a href="{{ route('login') }}" class="alert-link fw-bold">đăng nhập</a> để viết đánh giá.
+                                <strong>Lưu ý:</strong> Sản phẩm được hỗ trợ cài đặt và setup đầy đủ. Quý khách vui lòng liên hệ admin nếu cần hỗ trợ thêm thông tin chi tiết.
                             </div>
-                            @endauth
-
-                            <!-- Individual Reviews -->
-                            @forelse($product->comments as $comment)
-                            <div class="review-item mb-4 pb-4 border-bottom">
-                                <div class="d-flex align-items-start">
-                                    <div class="avatar me-3">
-                                        <div class="bg-{{ ['primary', 'success', 'info', 'warning', 'danger'][rand(0, 4)] }} text-white rounded-circle d-flex align-items-center justify-content-center" 
-                                             style="width: 50px; height: 50px; font-weight: bold;">
-                                            {{ strtoupper(substr($comment->user->name, 0, 2)) }}
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <h6 class="fw-bold mb-0">{{ $comment->user->name }}</h6>
-                                            <small class="text-muted">{{ $comment->created_at->format('d/m/Y H:i') }}</small>
-                                        </div>
-                                        <div class="mb-2">
-                                            @for($i = 1; $i <= 5; $i++)
-                                                @if($i <= $comment->rating)
-                                                    <i class="fas fa-star text-warning"></i>
-                                                @else
-                                                    <i class="far fa-star text-warning"></i>
-                                                @endif
-                                            @endfor
-                                        </div>
-                                        <p class="text-muted mb-0">{{ $comment->comment }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            @empty
-                            <div class="text-center py-5">
-                                <i class="fas fa-comments fa-3x text-muted mb-3"></i>
-                                <p class="text-muted">Chưa có đánh giá nào cho sản phẩm này. Hãy là người đầu tiên!</p>
-                            </div>
-                            @endforelse
                         </div>
                     </div>
+
+                    @include('products.partials.reviews', ['product' => $product, 'averageRating' => $averageRating, 'totalReviews' => $totalReviews])
                 </div>
             </div>
         </div>

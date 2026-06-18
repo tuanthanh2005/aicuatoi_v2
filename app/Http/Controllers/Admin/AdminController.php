@@ -1385,6 +1385,11 @@ class AdminController extends Controller
             'menu_chat',
             'menu_minigame',
             'menu_zalo_group',
+            'home_show_flash_sale',
+            'home_show_featured',
+            'home_show_exclusive',
+            'home_show_combo_ai',
+            'home_show_bento_highlights',
         ];
 
         foreach ($menuKeys as $key) {
@@ -1392,8 +1397,17 @@ class AdminController extends Controller
             SiteSetting::setValue($key, $request->has($key) ? '1' : '0');
         }
 
-        // Save fake orders settings
-        $settingsKeys = ['fake_orders_top1', 'fake_orders_top2', 'fake_orders_top3', 'zalo_group_link'];
+        // Save fake orders and contact settings
+        $settingsKeys = [
+            'fake_orders_top1',
+            'fake_orders_top2',
+            'fake_orders_top3',
+            'zalo_group_link',
+            'contact_facebook',
+            'contact_zalo',
+            'contact_telegram',
+            'contact_email'
+        ];
         foreach ($settingsKeys as $key) {
             if ($request->has($key)) {
                 SiteSetting::setValue($key, $request->input($key));

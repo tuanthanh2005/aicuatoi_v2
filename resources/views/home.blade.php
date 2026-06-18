@@ -947,7 +947,7 @@
                         <div class="contact-arrow"><i class="fa-solid fa-chevron-right"></i></div>
                     </a>
                     
-                    <a href="{{ \App\Models\SiteSetting::getValue('zalo_admin_link', 'https://zalo.me/0987654321') }}" target="_blank" class="contact-card-sidebar" style="border-left: 3px solid #0d9488;">
+                    <a href="{{ \App\Models\SiteSetting::getValue('contact_zalo', 'https://zalo.me/0772698113') }}" target="_blank" class="contact-card-sidebar" style="border-left: 3px solid #0d9488;">
                         <div class="contact-icon" style="background: #0d9488;">
                             <i class="fa-solid fa-headset"></i>
                         </div>
@@ -1109,6 +1109,7 @@
             </div>
 
             {{-- Bento Categories Highlights --}}
+            @if(\App\Models\SiteSetting::getValue('home_show_bento_highlights', '1') === '1')
             <div class="bento-grid mb-4">
                 <div class="bento-item bento-gpt" onclick="window.location.href='{{ route('product.keyword', 'gpt') }}'">
                     <div class="bento-icon"><i class="fa-solid fa-message"></i></div>
@@ -1135,6 +1136,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
             {{-- Store Catalog Tab Switcher --}}
             <div class="store-tabs-container">

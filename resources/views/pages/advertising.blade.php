@@ -216,19 +216,19 @@
                     <div class="contact-method">
                         <i class="fas fa-envelope"></i>
                         <h5>Email</h5>
-                        <a href="mailto:tranthanhtuanfix@gmail.com">tranthanhtuanfix@gmail.com</a>
+                        <a href="mailto:{{ \App\Models\SiteSetting::getValue('contact_email', 'tranthanhtuanfix@gmail.com') }}">{{ \App\Models\SiteSetting::getValue('contact_email', 'tranthanhtuanfix@gmail.com') }}</a>
                         <p style="font-size: 13px; margin-top: 10px; color: #718096;">Phản hồi trong 24 giờ</p>
                     </div>
                     <div class="contact-method">
                         <i class="fab fa-telegram"></i>
                         <h5>Telegram</h5>
-                        <a href="https://t.me/specademy" target="_blank">@specademy</a>
+                        <a href="{{ \App\Models\SiteSetting::getValue('contact_telegram', 'https://t.me/specademy') }}" target="_blank">{{ str_replace('https://t.me/', '@', \App\Models\SiteSetting::getValue('contact_telegram', '@specademy')) }}</a>
                         <p style="font-size: 13px; margin-top: 10px; color: #718096;">Chat trực tiếp và nhanh</p>
                     </div>
                     <div class="contact-method">
                         <i class="fas fa-comments"></i>
                         <h5>Zalo</h5>
-                        <a href="https://zalo.me/0708910952" target="_blank">0708910952</a>
+                        <a href="{{ \App\Models\SiteSetting::getValue('contact_zalo', 'https://zalo.me/0772698113') }}" target="_blank">{{ str_replace('https://zalo.me/', '', \App\Models\SiteSetting::getValue('contact_zalo', '0772698113')) }}</a>
                         <p style="font-size: 13px; margin-top: 10px; color: #718096;">Liên hệ qua Zalo</p>
                     </div>
                 </div>

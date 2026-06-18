@@ -87,7 +87,7 @@
             </a>
         </div>
         <div class="col-4">
-            <a href="https://www.facebook.com/profile.php?id=61589359706008" 
+            <a href="{{ \App\Models\SiteSetting::getValue('contact_facebook', 'https://www.facebook.com/profile.php?id=61589359706008') }}" 
                target="_blank" 
                class="desktop-banner-card fanpage-card text-decoration-none">
                 <div class="banner-icon-circle">
@@ -98,14 +98,14 @@
             </a>
         </div>
         <div class="col-4">
-            <a href="https://zalo.me/0772698113" 
+            <a href="{{ \App\Models\SiteSetting::getValue('contact_zalo', 'https://zalo.me/0772698113') }}" 
                target="_blank" 
                class="desktop-banner-card zalo-admin-card text-decoration-none">
                 <div class="banner-icon-circle">
                     <i class="fas fa-headset"></i>
                 </div>
                 <div class="banner-title">Inbox Admin</div>
-                <div class="banner-subtitle">Liên hệ Zalo: 0772698113</div>
+                <div class="banner-subtitle">Liên hệ Zalo: {{ str_replace('https://zalo.me/', '', \App\Models\SiteSetting::getValue('contact_zalo', '0772698113')) }}</div>
             </a>
         </div>
     </div>

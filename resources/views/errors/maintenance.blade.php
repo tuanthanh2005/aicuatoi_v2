@@ -328,8 +328,8 @@
     <div class="particles" id="particles"></div>
 
     {{-- Logo --}}
-    <a href="{{ route('home') }}" class="logo">
-        <div class="logo-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+    <a href="{{ route('home') }}" class="logo" style="display: flex; align-items: center; gap: 10px;">
+        <img src="{{ asset('images/aicuatoi.png') }}" alt="Logo" style="height: 32px; width: auto; object-fit: contain;">
         <div class="logo-text">AiCuaToi<span>.com</span></div>
     </a>
 

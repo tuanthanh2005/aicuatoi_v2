@@ -332,6 +332,13 @@
                             'color'  => 'linear-gradient(135deg,#6366f1,#a855f7)',
                             'where'  => 'both',
                         ],
+                        'home_show_bento_highlights' => [
+                            'label'  => 'Gợi ý Bento AI',
+                            'desc'   => 'Hiển thị 3 ô giới thiệu ChatGPT, Claude, Cursor ở trang chủ',
+                            'icon'   => 'fa-table-cells-large',
+                            'color'  => 'linear-gradient(135deg,#0ea5e9,#0d9488)',
+                            'where'  => 'both',
+                        ],
                     ];
                 @endphp
 
@@ -414,6 +421,42 @@
                     </div>
                 </div>
                 
+                {{-- Cài đặt Thông tin Liên hệ --}}
+                <div class="settings-header mt-5">
+                    <h2><i class="fas fa-address-book me-2"></i>Cài đặt Thông tin Liên hệ</h2>
+                    <p class="text-muted mb-0">Quản lý các đường dẫn mạng xã hội và thông tin liên hệ chính thức của website.</p>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="menu-item-row flex-column align-items-start">
+                            <label class="form-label fw-bold text-primary mb-2"><i class="fab fa-facebook"></i> Facebook Page Link</label>
+                            <input type="url" class="form-control" name="contact_facebook" value="{{ \App\Models\SiteSetting::getValue('contact_facebook', 'https://www.facebook.com/profile.php?id=61589359706008') }}" placeholder="https://www.facebook.com/...">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="menu-item-row flex-column align-items-start">
+                            <label class="form-label fw-bold text-success mb-2"><i class="fas fa-comment-dots"></i> Zalo Admin Link / Phone</label>
+                            <input type="url" class="form-control" name="contact_zalo" value="{{ \App\Models\SiteSetting::getValue('contact_zalo', 'https://zalo.me/0772698113') }}" placeholder="https://zalo.me/...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="menu-item-row flex-column align-items-start">
+                            <label class="form-label fw-bold text-info mb-2"><i class="fab fa-telegram"></i> Telegram Link</label>
+                            <input type="url" class="form-control" name="contact_telegram" value="{{ \App\Models\SiteSetting::getValue('contact_telegram', 'https://t.me/specademy') }}" placeholder="https://t.me/...">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="menu-item-row flex-column align-items-start">
+                            <label class="form-label fw-bold text-danger mb-2"><i class="fas fa-envelope"></i> Contact Email</label>
+                            <input type="email" class="form-control" name="contact_email" value="{{ \App\Models\SiteSetting::getValue('contact_email', 'tranthanhtuanfix@gmail.com') }}" placeholder="example@gmail.com">
+                        </div>
+                    </div>
+                </div>
+
                 {{-- Cài đặt Link Zalo --}}
                 <div class="settings-header mt-5">
                     <h2><i class="fas fa-link me-2"></i>Cài đặt Liên kết Zalo</h2>

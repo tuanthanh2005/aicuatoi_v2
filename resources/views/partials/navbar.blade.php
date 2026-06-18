@@ -11,9 +11,7 @@
     <div class="container-fluid px-3">
         {{-- Logo --}}
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
-            <div class="brand-icon">
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
-            </div>
+            <img src="{{ asset('images/aicuatoi.png') }}" alt="Logo" style="height: 32px; width: auto; object-fit: contain;">
             <span>AiCuaToi<span class="brand-dot">.com</span></span>
         </a>
 
@@ -67,14 +65,19 @@
             </ul>
         </div>
 
-        {{-- Search Bar (desktop) --}}
-        <div class="d-none d-xl-flex search-bar-wrap align-items-center ms-auto me-3" style="max-width: 250px;">
-            <form class="search-bar-inner w-100" action="{{ route('shop') }}" method="GET" style="border: 1.5px solid var(--brand); background-color: #fff;">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" name="search" class="search-input w-100" 
-                       placeholder="{{ __('Tìm kiếm sản phẩm...') }}"
-                       value="{{ request('search') }}">
-            </form>
+        {{-- Search Bar (desktop, expandable) --}}
+        <div class="d-none d-xl-flex align-items-center ms-auto me-3 position-relative" id="desktopSearchContainer" style="height: 40px; min-width: 40px;">
+            <button class="nav-icon-btn" id="desktopSearchToggle" type="button" aria-label="{{ __('Tìm kiếm') }}" style="border: none; background: transparent; cursor: pointer; z-index: 1060; position: relative;">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
+            </button>
+            <div id="desktopSearchFormWrap" class="desktop-search-form-wrap">
+                <form class="search-bar-inner w-100 d-flex align-items-center mb-0" action="{{ route('shop') }}" method="GET" style="border: 1.5px solid var(--brand); background-color: #fff; border-radius: 20px; padding: 4px 12px; height: 38px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                    <i class="fa-solid fa-magnifying-glass search-icon me-2" style="color: #6b7280;"></i>
+                    <input type="text" name="search" id="desktopSearchInput" class="search-input w-100 border-0" 
+                           placeholder="{{ __('Tìm kiếm sản phẩm...') }}"
+                           value="{{ request('search') }}" style="outline: none; font-size: 14px; background: transparent;">
+                </form>
+            </div>
         </div>
 
         {{-- Right Actions --}}
@@ -190,7 +193,7 @@
         <span>{{ __('Cửa hàng') }}</span>
     </a>
     @endif
-    <a href="https://zalo.me/0772698113" target="_blank" class="mobile-nav-item">
+    <a href="{{ \App\Models\SiteSetting::getValue('contact_zalo', 'https://zalo.me/0772698113') }}" target="_blank" class="mobile-nav-item">
         <i class="fa-solid fa-headset"></i>
         <span>{{ __('Hỗ trợ') }}</span>
     </a>
@@ -242,6 +245,37 @@
             updateUnreadChat();
             setInterval(updateUnreadChat, 10000); // Check every 10s
         @endauth
+
+        // Expandable Desktop Search Bar Logic
+        const searchToggle = document.getElementById('desktopSearchToggle');
+        const searchWrap = document.getElementById('desktopSearchFormWrap');
+        const searchInput = document.getElementById('desktopSearchInput');
+
+        if (searchToggle && searchWrap) {
+            searchToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isActive = searchWrap.classList.toggle('active');
+                if (isActive) {
+                    searchInput.focus();
+                    searchToggle.innerHTML = '<i class="fa-solid fa-xmark" style="font-size: 16px;"></i>';
+                } else {
+                    searchToggle.innerHTML = '<i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>';
+                }
+            });
+
+            // Prevent closing when clicking inside the search form
+            searchWrap.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', function() {
+                if (searchWrap.classList.contains('active')) {
+                    searchWrap.classList.remove('active');
+                    searchToggle.innerHTML = '<i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>';
+                }
+            });
+        }
     });
 </script>
 
@@ -281,7 +315,7 @@
                     </a>
 
                     {{-- Item 2: Fanpage --}}
-                    <a href="https://www.facebook.com/profile.php?id=61589359706008" 
+                    <a href="{{ \App\Models\SiteSetting::getValue('contact_facebook', 'https://www.facebook.com/profile.php?id=61589359706008') }}" 
                        target="_blank" 
                        class="d-flex align-items-center gap-3 p-3 text-decoration-none bg-white rounded-3 contact-modal-item"
                        style="border: 1px solid #e5e7eb; transition: all 0.2s ease;">
@@ -297,7 +331,7 @@
                     </a>
 
                     {{-- Item 3: Admin Zalo --}}
-                    <a href="https://zalo.me/0772698113" 
+                    <a href="{{ \App\Models\SiteSetting::getValue('contact_zalo', 'https://zalo.me/0772698113') }}" 
                        target="_blank" 
                        class="d-flex align-items-center gap-3 p-3 text-decoration-none bg-white rounded-3 contact-modal-item"
                        style="border: 1px solid #e5e7eb; transition: all 0.2s ease;">
@@ -307,7 +341,7 @@
                         </div>
                         <div class="flex-grow-1 text-start">
                             <h6 class="fw-bold mb-1" style="color: #1f2937; font-size: 14px;">CHAT ZALO ADMIN</h6>
-                            <p class="mb-0 text-muted" style="font-size: 12px;">Zalo liên hệ: 0772698113</p>
+                            <p class="mb-0 text-muted" style="font-size: 12px;">Zalo liên hệ: {{ str_replace('https://zalo.me/', '', \App\Models\SiteSetting::getValue('contact_zalo', '0772698113')) }}</p>
                         </div>
                         <div style="color: #9ca3af;"><i class="fa-solid fa-chevron-right"></i></div>
                     </a>
@@ -332,5 +366,22 @@
     }
     .contact-modal-item:hover .contact-modal-icon-wrap {
         transform: scale(1.05);
+    }
+    .desktop-search-form-wrap {
+        position: absolute;
+        right: 45px;
+        top: 50%;
+        transform: translateY(-50%) scaleX(0);
+        transform-origin: right;
+        opacity: 0;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1050;
+        pointer-events: none;
+        width: 280px;
+    }
+    .desktop-search-form-wrap.active {
+        transform: translateY(-50%) scaleX(1);
+        opacity: 1;
+        pointer-events: auto;
     }
 </style>

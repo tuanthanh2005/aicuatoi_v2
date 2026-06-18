@@ -5,129 +5,195 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <style>
+        :root {
+            --tech-primary: #4f46e5;
+            --tech-primary-glow: rgba(79, 70, 229, 0.15);
+            --tech-secondary: #0d9488;
+            --tech-bg: #f8fafc;
+            --tech-card-bg: #ffffff;
+            --tech-text-main: #0f172a;
+            --tech-text-muted: #64748b;
+            --tech-border: #e2e8f0;
+        }
+
         .tech-wrapper {
-            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
-            padding: 40px 0;
+            background-color: var(--tech-bg);
+            background-image: radial-gradient(rgba(79, 70, 229, 0.03) 1px, transparent 0), radial-gradient(rgba(13, 148, 136, 0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+            padding: 50px 0;
             min-height: 100vh;
-        }        .description-content {
-            font-size: 1rem;
         }
+
         .tech-card {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            background: var(--tech-card-bg);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01);
+            border: 1px solid var(--tech-border);
+            transition: all 0.3s ease;
         }
+
+        .tech-card:hover {
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.04);
+            border-color: rgba(79, 70, 229, 0.2);
+        }
+
         .product-detail-image {
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            transition: transform 0.3s;
-            border: 3px solid #00d4ff;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--tech-border);
         }
+
         .product-detail-image:hover {
-            transform: scale(1.05) rotateY(5deg);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.1);
         }
+
         .tech-badge {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
+            background: rgba(79, 70, 229, 0.03);
+            border: 1px solid rgba(79, 70, 229, 0.08);
+            color: var(--tech-text-main);
+            padding: 16px 20px;
+            border-radius: 16px;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
-            box-shadow: 0 5px 20px rgba(0,212,255,0.3);
             cursor: default;
-            pointer-events: none;
+            transition: all 0.2s ease;
         }
+
+        .tech-badge:hover {
+            background: rgba(79, 70, 229, 0.06);
+            transform: translateY(-2px);
+        }
+
         .tech-badge i {
-            font-size: 2rem;
-            margin-right: 20px;
+            font-size: 1.8rem;
+            color: var(--tech-primary);
+            margin-right: 18px;
+            flex-shrink: 0;
         }
-        .spec-table {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
+
+        .btn-buy-primary {
+            background: linear-gradient(135deg, var(--tech-primary) 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            font-weight: 700;
+            border-radius: 50px;
+            padding: 14px 30px;
+            box-shadow: 0 8px 20px var(--tech-primary-glow);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        .spec-row {
+
+        .btn-buy-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.3);
+            color: white;
+        }
+
+        .btn-buy-secondary {
+            background: #facc15;
+            color: #0f172a;
+            border: none;
+            font-weight: 700;
+            border-radius: 50px;
+            padding: 14px 28px;
+            box-shadow: 0 8px 20px rgba(250, 204, 21, 0.2);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-buy-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(250, 204, 21, 0.35);
+            color: #0f172a;
+        }
+
+        .btn-buy-outline {
+            background: transparent;
+            color: var(--tech-text-muted);
+            border: 1px solid var(--tech-border);
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 14px 28px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-buy-outline:hover {
+            transform: translateY(-2px);
+            background: #f1f5f9;
+            color: var(--tech-text-main);
+            border-color: var(--tech-text-muted);
+        }
+
+        .tech-tab.nav-link {
+            border: 1px solid var(--tech-border);
+            background: #ffffff;
+            color: var(--tech-text-muted);
+            border-radius: 16px;
+            padding: 15px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+        }
+
+        .tech-tab.nav-link i {
+            font-size: 18px;
+            color: var(--tech-text-muted);
+            margin: 0 !important;
+        }
+
+        .tech-tab.nav-link:hover {
+            transform: translateY(-2px);
+            background: #f8fafc;
+            color: var(--tech-primary);
+            border-color: rgba(79, 70, 229, 0.2);
+        }
+
+        .tech-tab.nav-link.active {
+            background: linear-gradient(135deg, var(--tech-primary) 0%, #3b82f6 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 8px 20px var(--tech-primary-glow);
+        }
+
+        .tech-tab.nav-link.active i {
+            color: white;
+        }
+
+        .spec-item-box {
+            background: #f8fafc;
+            border: 1px solid var(--tech-border);
+            border-radius: 16px;
+            padding: 18px 20px;
+            height: 100%;
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #dee2e6;
-        }
-        .spec-row:last-child {
-            border-bottom: none;
-        }
-        .tech-tab.nav-link {
-            border: none;
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            margin: 0 5px;
-            border-radius: 15px;
-            padding: 18px 35px;
-            color: white;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
         }
-        .tech-tab.nav-link i {
-            font-size: 28px;
-            margin: 0 !important;
-            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+        .spec-item-box:hover {
+            background: #ffffff;
+            border-color: rgba(79, 70, 229, 0.25);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.03);
         }
-        .tech-tab.nav-link span {
-            font-size: 15px;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Tab Tính Năng - Xanh cyan sáng */
-        #features-tab {
-            background: linear-gradient(135deg, #06d6a0 0%, #1b9aaa 100%);
-            border: 2px solid rgba(255,255,255,0.5);
-        }
-        #features-tab:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(6,214,160,0.5), 0 0 20px rgba(6,214,160,0.4);
-            border-color: rgba(255,255,255,0.7);
-        }
-        #features-tab.active {
-            box-shadow: 0 12px 35px rgba(6,214,160,0.6), 0 0 25px rgba(6,214,160,0.5);
-            border-color: rgba(255,255,255,0.8);
-        }
-        
-        /* Tab Mô Tả - Vàng cam sáng */
-        #description-tab {
-            background: linear-gradient(135deg, #ffa502 0%, #ff6348 100%);
-            border: 2px solid rgba(255,255,255,0.5);
-        }
-        #description-tab:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(255,165,2,0.5), 0 0 20px rgba(255,165,2,0.4);
-            border-color: rgba(255,255,255,0.7);
-        }
-        #description-tab.active {
-            box-shadow: 0 12px 35px rgba(255,165,2,0.6), 0 0 25px rgba(255,165,2,0.5);
-            border-color: rgba(255,255,255,0.8);
-        }
-        
-        /* Tab Đánh Giá - Hồng tím sáng */
-        #reviews-tab {
-            background: linear-gradient(135deg, #ee5a6f 0%, #c44569 100%);
-            border: 2px solid rgba(255,255,255,0.5);
-        }
-        #reviews-tab:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(238,90,111,0.5), 0 0 20px rgba(238,90,111,0.4);
-            border-color: rgba(255,255,255,0.7);
-        }
-        #reviews-tab.active {
-            box-shadow: 0 12px 35px rgba(238,90,111,0.6), 0 0 25px rgba(238,90,111,0.5);
-            border-color: rgba(255,255,255,0.8);
-        }
-        
+
         .rating-input {
             display: flex;
             flex-direction: row-reverse;
@@ -149,97 +215,54 @@
             color: #ffc107;
         }
 
-        /* --- MOBILE RESPONSIVE TWEAKS --- */
         @media (max-width: 768px) {
             .tech-wrapper {
-                padding: 15px 0;
+                padding: 20px 0;
             }
             .tech-card {
-                padding: 15px;
-                border-radius: 16px;
+                padding: 20px;
+                border-radius: 18px;
             }
             .product-detail-image {
-                border-radius: 12px;
-                border-width: 2px;
+                border-radius: 14px;
             }
             h1.fw-bold {
-                font-size: 1.4rem;
-                line-height: 1.4;
+                font-size: 1.5rem;
             }
             .lead.text-muted {
-                font-size: 0.95rem;
-                margin-bottom: 1rem !important;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
+                font-size: 0.92rem;
             }
-            h2.text-info {
-                font-size: 1.6rem;
-            }
-            
-            /* Buttons layout */
             .d-flex.gap-3.mb-3 {
-                gap: 10px !important;
+                gap: 12px !important;
                 flex-direction: column;
             }
-            .btn-lg {
-                padding: 12px 15px !important;
-                font-size: 1rem;
+            .btn-buy-primary, .btn-buy-secondary, .btn-buy-outline {
                 width: 100%;
-                border-radius: 12px !important;
+                padding: 12px 20px;
+                font-size: 0.95rem;
+                border-radius: 30px;
             }
-            
-            /* Tabs responsive */
             .nav-tabs.nav-fill {
                 flex-wrap: nowrap;
                 overflow-x: auto;
-                padding-bottom: 5px;
+                padding-bottom: 8px;
                 -webkit-overflow-scrolling: touch;
-                border-radius: 12px;
             }
             .nav-tabs.nav-fill::-webkit-scrollbar {
                 display: none;
             }
             .tech-tab.nav-link {
-                padding: 10px 5px;
-                margin: 0 4px;
+                padding: 12px 16px;
+                min-width: 110px;
                 border-radius: 12px;
-                min-width: 90px;
-                gap: 4px;
             }
-            .tech-tab.nav-link i {
-                font-size: 20px;
-            }
-            .tech-tab.nav-link span {
-                font-size: 11px;
-                white-space: nowrap;
-            }
-            
-            /* Features Badges */
             .tech-badge {
-                padding: 15px;
+                padding: 14px 16px;
                 border-radius: 12px;
-                flex-direction: row;
-                text-align: left;
-                gap: 15px;
+                gap: 12px;
             }
             .tech-badge i {
-                margin-right: 0;
-                font-size: 1.8rem;
-            }
-            
-            /* Typography & Spacing inside cards */
-            .description-content {
-                font-size: 0.95rem;
-            }
-            .alert {
-                padding: 12px;
-                font-size: 0.9rem;
-            }
-            .bg-light.p-4 {
-                padding: 15px !important;
-                border-radius: 12px !important;
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -251,9 +274,9 @@
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="mb-4" data-aos="fade-down">
             <ol class="breadcrumb bg-transparent">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color: #06d6a0; font-weight: 600;">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('shop') }}" style="color: #06d6a0; font-weight: 600;">Cửa hàng</a></li>
-                <li class="breadcrumb-item active" style="color: #ff6348; font-weight: 700;">{{ $product->name }}</li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color: var(--tech-primary); font-weight: 600; text-decoration: none;">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('shop') }}" style="color: var(--tech-primary); font-weight: 600; text-decoration: none;">Cửa hàng</a></li>
+                <li class="breadcrumb-item active" style="color: var(--tech-text-main); font-weight: 700;">{{ $product->name }}</li>
             </ol>
         </nav>
 
@@ -269,52 +292,51 @@
             
             <div class="col-lg-6" data-aos="fade-left">
                 <div class="tech-card">
-                    <span class="badge bg-info mb-3" style="font-size: 14px;">
-                        <i class="fas fa-microchip me-2"></i>{{ strtoupper($product->category) }}
+                    <span class="badge mb-3" style="font-size: 13px; font-weight: 700; background: rgba(79, 70, 229, 0.08); color: var(--tech-primary); border-radius: 30px; padding: 6px 16px; border: 1px solid rgba(79, 70, 229, 0.12);">
+                        <i class="fas fa-microchip me-1"></i> {{ strtoupper($product->category) }}
                     </span>
-                    <h1 class="fw-bold mb-3" style="color: #0f2027;">{{ $product->name }}</h1>
-                    <p class="lead text-muted mb-4">{{ Str::limit($product->description, 150, '......') }}</p>
+                    <h1 class="fw-bold mb-3" style="color: var(--tech-text-main); font-size: 2rem;">{{ $product->name }}</h1>
+                    <p class="lead text-muted mb-4" style="font-size: 1rem; line-height: 1.6;">{{ Str::limit($product->description, 150, '......') }}</p>
                     
-                    <div class="mb-4 p-4 bg-light rounded-4">
+                    <div class="mb-4 p-4 rounded-4" style="background: rgba(79, 70, 229, 0.03); border: 1px solid rgba(79, 70, 229, 0.06);">
                         <div class="d-flex align-items-end gap-3 flex-wrap">
-                            <h2 class="text-info fw-bold mb-0">{{ $product->formatted_price }}</h2>
+                            <h2 class="fw-bold mb-0" style="color: var(--tech-primary); font-size: 2.2rem;">{{ $product->formatted_price }}</h2>
                             @if($product->is_on_sale)
                                 <div class="d-flex align-items-center gap-2 mb-1">
-                                    <span class="text-muted text-decoration-line-through">{{ $product->formatted_original_price }}</span>
-                                    <span class="badge bg-danger">-{{ $product->discount_percent }}%</span>
+                                    <span class="text-muted text-decoration-line-through" style="font-size: 1.1rem;">{{ $product->formatted_original_price }}</span>
+                                    <span class="badge bg-danger rounded-pill px-2.5 py-1" style="font-size: 0.8rem; font-weight: 700;">-{{ $product->discount_percent }}%</span>
                                 </div>
                             @endif
                         </div>
-                        <small class="text-muted"><i class="fas fa-info-circle me-1"></i>Giá đã bao gồm VAT</small>
+                        <div class="mt-2 text-muted" style="font-size: 0.82rem;"><i class="fas fa-info-circle me-1"></i>Giá đã bao gồm VAT</div>
                     </div>
                     
                     @if($product->stock > 0)
-                        <div class="d-flex align-items-center flex-wrap gap-2">
-                            <div class="alert alert-success d-inline-flex align-items-center mb-0">
-                                <i class="fas fa-check-circle"></i> Còn hàng ({{ $product->stock }} sản phẩm)
+                        <div class="d-flex align-items-center flex-wrap gap-2 mb-4">
+                            <div class="alert alert-success d-inline-flex align-items-center mb-0 py-2 px-3 border-0" style="background: rgba(16, 185, 129, 0.08); color: #10b981; border-radius: 12px; font-weight: 600;">
+                                <i class="fas fa-check-circle me-2"></i> Còn hàng ({{ $product->stock }} sản phẩm)
                             </div>
-                            <small class="text-muted">Gia hạn theo tháng 3/6/12 tháng: liên hệ admin hoặc box chat</small>
+                            <small class="text-muted"><i class="far fa-clock me-1"></i>Giao hàng / Kích hoạt nhanh chóng</small>
                         </div>
-                        @else
-                        <div class="alert alert-danger d-inline-block">
-                            <i class="fas fa-times-circle"></i> Hết hàng
+                    @else
+                        <div class="alert alert-danger d-inline-flex align-items-center mb-4 py-2 px-3 border-0" style="background: rgba(239, 68, 68, 0.08); color: #ef4444; border-radius: 12px; font-weight: 600;">
+                            <i class="fas fa-times-circle me-2"></i> Hết hàng
                         </div>
                     @endif
                     
-                    <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-4">
+                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
                         @csrf
                         <div class="d-flex gap-3 mb-3 flex-wrap">
-                            <button type="submit" class="btn btn-lg rounded-pill px-5 shadow" 
-                                    style="background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); color: white; border: none;">
-                                <i class="fas fa-shopping-cart me-2"></i> Thêm vào giỏ
+                            <button type="submit" class="btn btn-buy-primary shadow">
+                                <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
                             </button>
                             @if($product->delivery_type === 'digital')
-                            <button type="submit" formaction="{{ route('cart.buy-now', $product->id) }}" class="btn btn-warning btn-lg rounded-pill px-4 shadow">
-                                <i class="fas fa-bolt me-2"></i> Mua ngay
+                            <button type="submit" formaction="{{ route('cart.buy-now', $product->id) }}" class="btn btn-buy-secondary shadow">
+                                <i class="fas fa-bolt"></i> Mua ngay
                             </button>
                             @endif
-                            <a href="{{ route('shop') }}" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
-                                <i class="fas fa-arrow-left me-2"></i> Tiếp tục mua
+                            <a href="{{ route('shop') }}" class="btn btn-buy-outline">
+                                <i class="fas fa-arrow-left"></i> Tiếp tục mua
                             </a>
                         </div>
                     </form>
@@ -327,13 +349,13 @@
         <div class="row mt-4" data-aos="fade-up">
             <div class="col-12">
                 <div class="tech-card">
-                    <h5 class="fw-bold mb-4" style="color: #0f2027;"><i class="fas fa-cogs me-2 text-info"></i>Thông Số Kỹ Thuật</h5>
+                    <h5 class="fw-bold mb-4" style="color: var(--tech-text-main);"><i class="fas fa-cogs me-2 text-primary"></i>Thông Số Kỹ Thuật</h5>
                     @if($product->specs && count(array_filter($product->specs)) > 0)
                         <div class="row g-3">
                             @foreach($product->specs as $key => $value)
                                 @if(!empty($value))
                                 <div class="col-md-6 col-lg-4">
-                                    <div class="p-3 bg-light rounded-4 h-100 d-flex justify-content-between align-items-center">
+                                    <div class="spec-item-box">
                                         <span class="text-muted me-2" style="font-weight: 500;">{{ ucfirst(str_replace('_', ' ', $key)) }}:</span>
                                         <strong class="text-dark text-end" style="font-weight: 700;">{{ is_array($value) ? implode(', ', $value) : $value }}</strong>
                                     </div>
@@ -342,7 +364,7 @@
                             @endforeach
                         </div>
                     @else
-                        <div class="alert alert-warning mb-0">
+                        <div class="alert alert-warning mb-0" style="background: rgba(245, 158, 11, 0.08); color: #d97706; border: none; border-radius: 12px;">
                             <i class="fas fa-info-circle me-2"></i>
                             Chưa có thông tin thông số kỹ thuật cho sản phẩm này.
                         </div>
@@ -350,30 +372,28 @@
                 </div>
             </div>
         </div>
-        
-
 
         <!-- Tabs Section -->
         <div class="row mt-5">
             <div class="col-12">
-                <ul class="nav nav-tabs nav-fill border-0 mb-4" id="productTabs" role="tablist" data-aos="fade-up">
+                <ul class="nav nav-tabs nav-fill border-0 mb-4 gap-2" id="productTabs" role="tablist" data-aos="fade-up">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link tech-tab active" id="features-tab" data-bs-toggle="tab" 
-                                data-bs-target="#features" type="button" role="tab">
+                                data-bs-target="#features" type="button" role="tab" style="width: 100%;">
                             <i class="fas fa-microchip"></i>
                             <span>Tính Năng</span>
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link tech-tab" id="description-tab" data-bs-toggle="tab" 
-                                data-bs-target="#description" type="button" role="tab">
+                                data-bs-target="#description" type="button" role="tab" style="width: 100%;">
                             <i class="fas fa-list-alt"></i>
                             <span>Mô Tả</span>
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link tech-tab" id="reviews-tab" data-bs-toggle="tab" 
-                                data-bs-target="#reviews" type="button" role="tab">
+                                data-bs-target="#reviews" type="button" role="tab" style="width: 100%;">
                             <i class="fas fa-comments"></i>
                             <span>Đánh Giá</span>
                         </button>
@@ -384,19 +404,19 @@
                     <!-- Features Tab -->
                     <div class="tab-pane fade show active" id="features" role="tabpanel" data-aos="fade-up">
                         <div class="tech-card">
-                            <h4 class="fw-bold mb-4">
+                            <h4 class="fw-bold mb-4" style="color: var(--tech-text-main);">
                                 <i class="fas fa-star text-warning me-2"></i>Tính Năng Nổi Bật
                             </h4>
                             @if($product->features && $product->features->count() > 0)
                             <div class="row g-3">
                                 @php
                                 $defaultColors = [
-                                    '#667eea', // Tím xanh
-                                    '#f093fb', // Hồng
-                                    '#4facfe', // Xanh dương nhạt
-                                    '#43e97b', // Xanh lá
-                                    '#fa709a', // Đỏ cam
-                                    '#764ba2', // Tím đậm
+                                    '#4f46e5', // Indigo
+                                    '#0d9488', // Teal
+                                    '#3b82f6', // Blue
+                                    '#10b981', // Emerald
+                                    '#f59e0b', // Amber
+                                    '#ec4899', // Pink
                                 ];
                                 @endphp
                                 @foreach($product->features as $index => $feature)
@@ -404,12 +424,12 @@
                                 $color = $feature->color ?? $defaultColors[$index % count($defaultColors)];
                                 @endphp
                                 <div class="col-md-6">
-                                    <div class="tech-badge" style="background: linear-gradient(135deg, {{ $color }} 0%, {{ $color }}dd 100%);">
-                                        <i class="{{ $feature->icon }}"></i>
+                                    <div class="tech-badge" style="border-left: 4px solid {{ $color }};">
+                                        <i class="{{ $feature->icon }}" style="color: {{ $color }};"></i>
                                         <div>
-                                            <strong>{{ $feature->name }}</strong><br>
+                                            <strong style="color: var(--tech-text-main);">{{ $feature->name }}</strong><br>
                                             @if($feature->description)
-                                            <small>{{ $feature->description }}</small>
+                                            <small class="text-muted" style="font-size: 0.8rem;">{{ $feature->description }}</small>
                                             @endif
                                         </div>
                                     </div>
@@ -417,7 +437,7 @@
                                 @endforeach
                             </div>
                             @else
-                            <div class="alert alert-info">
+                            <div class="alert alert-info border-0" style="background: rgba(59, 130, 246, 0.08); color: #3b82f6; border-radius: 12px;">
                                 <i class="fas fa-info-circle me-2"></i>
                                 Chưa có thông tin tính năng nổi bật cho sản phẩm này.
                             </div>
@@ -428,15 +448,15 @@
                     <!-- Description Tab -->
                     <div class="tab-pane fade" id="description" role="tabpanel" data-aos="fade-up">
                         <div class="tech-card">
-                            <h4 class="fw-bold mb-4">
+                            <h4 class="fw-bold mb-4" style="color: var(--tech-text-main);">
                                 <i class="fas fa-align-left text-info me-2"></i>Mô Tả Chi Tiết
                             </h4>
-                            <div class="text-muted description-content" style="line-height: 1.8;">{!! nl2br(e($product->description)) !!}</div>
-                            <hr class="my-4">
-                            <div class="alert alert-info rounded-4">
+                            <div class="description-content" style="line-height: 1.8; color: #334155;">{!! nl2br(e($product->description)) !!}</div>
+                            <hr class="my-4" style="border-color: var(--tech-border);">
+                            <div class="alert alert-info border-0 rounded-4" style="background: rgba(59, 130, 246, 0.08); color: #3b82f6; border-radius: 16px;">
                                 <i class="fas fa-info-circle me-2"></i>
                                 <strong>Lưu ý:</strong> Sản phẩm công nghệ được kiểm tra kỹ lưỡng trước khi giao hàng. 
-                                Bảo hành chính hãng 24 tháng tại các trung tâm bảo hành toàn quốc.
+                                Hỗ trợ nhanh chóng qua nhóm hỗ trợ hoặc box chat trực tiếp của chúng tôi.
                             </div>
                         </div>
                     </div>

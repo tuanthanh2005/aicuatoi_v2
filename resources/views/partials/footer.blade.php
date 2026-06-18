@@ -2,9 +2,9 @@
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
-                <div class="footer-brand">
-                    <div class="brand-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                    AiCuaToi.com
+                <div class="footer-brand d-flex align-items-center gap-2">
+                    <img src="{{ asset('images/aicuatoi.png') }}" alt="Logo" style="height: 32px; width: auto; object-fit: contain;">
+                    <span>AiCuaToi.com</span>
                 </div>
                 <p class="small text-muted">{{ __('Nền tảng cung cấp giải pháp công nghệ, công cụ AI và sản phẩm số chất lượng cho cộng đồng Việt Nam.') }}</p>
             </div>
@@ -172,7 +172,7 @@
 
                     <div class="alert alert-info mt-4" style="border-radius: 12px;">
                         <i class="fas fa-info-circle me-2"></i>
-                        <strong>Cần hỗ trợ?</strong> Liên hệ email: tranthanhtuanfix@gmail.com
+                        <strong>Cần hỗ trợ?</strong> Liên hệ email: {{ \App\Models\SiteSetting::getValue('contact_email', 'tranthanhtuanfix@gmail.com') }}
                     </div>
                 </div>
             </div>
@@ -221,9 +221,9 @@
 
                     <div class="alert alert-primary mt-4" style="border-radius: 12px;">
                         <i class="fas fa-envelope me-2"></i>
-                        <strong>Liên hệ quảng cáo:</strong> tranthanhtuanfix@gmail.com<br>
+                        <strong>Liên hệ quảng cáo:</strong> {{ \App\Models\SiteSetting::getValue('contact_email', 'tranthanhtuanfix@gmail.com') }}<br>
                         <i class="fab fa-telegram me-2"></i>
-                        <strong>Telegram:</strong> @specademy
+                        <strong>Telegram:</strong> {{ str_replace('https://t.me/', '@', \App\Models\SiteSetting::getValue('contact_telegram', '@specademy')) }}
                     </div>
                 </div>
             </div>
@@ -247,18 +247,18 @@
                     </p>
 
                     <!-- Email Contact -->
-                    <a href="mailto:tranthanhtuanfix@gmail.com" class="d-block p-3 mb-3 rounded-3"
+                    <a href="mailto:{{ \App\Models\SiteSetting::getValue('contact_email', 'tranthanhtuanfix@gmail.com') }}" class="d-block p-3 mb-3 rounded-3"
                         style="background: linear-gradient(135deg, #f093fb15 0%, #f5576c15 100%); border: 2px solid #f5576c; text-decoration: none; color: inherit; transition: all 0.3s ease;">
                         <div style="text-align: center;">
                             <i class="fas fa-envelope"
                                 style="font-size: 2rem; color: #f5576c; margin-bottom: 10px; display: block;"></i>
                             <h6 class="fw-bold mt-2 mb-1">📧 Email</h6>
-                            <small style="color: #718096;">tranthanhtuanfix@gmail.com</small>
+                            <small style="color: #718096;">{{ \App\Models\SiteSetting::getValue('contact_email', 'tranthanhtuanfix@gmail.com') }}</small>
                         </div>
                     </a>
 
                     <!-- Telegram Contact -->
-                    <a href="https://t.me/specademy" target="_blank" class="d-block p-3 mb-3 rounded-3"
+                    <a href="{{ \App\Models\SiteSetting::getValue('contact_telegram', 'https://t.me/specademy') }}" target="_blank" class="d-block p-3 mb-3 rounded-3"
                         style="background: linear-gradient(135deg, #4facfe15 0%, #00f2fe15 100%); border: 2px solid #0088cc; text-decoration: none; color: inherit; transition: all 0.3s ease;">
                         <div style="text-align: center;">
                             <i class="fab fa-telegram"
@@ -269,7 +269,7 @@
                     </a>
 
                     <!-- Zalo Contact -->
-                    <a href="https://zalo.me/0708910952" target="_blank" class="d-block p-3 mb-3 rounded-3"
+                    <a href="{{ \App\Models\SiteSetting::getValue('contact_zalo', 'https://zalo.me/0772698113') }}" target="_blank" class="d-block p-3 mb-3 rounded-3"
                         style="background: linear-gradient(135deg, #43e97b15 0%, #38f9d715 100%); border: 2px solid #0068ff; text-decoration: none; color: inherit; transition: all 0.3s ease;">
                         <div style="text-align: center;">
                             <i class="fas fa-comments"
