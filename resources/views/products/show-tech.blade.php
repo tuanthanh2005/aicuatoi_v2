@@ -6,19 +6,19 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <style>
         :root {
-            --tech-primary: #818cf8;
-            --tech-primary-glow: rgba(129, 140, 248, 0.2);
-            --tech-secondary: #2dd4bf;
-            --tech-bg: #0b0f19;
-            --tech-card-bg: #111827;
-            --tech-text-main: #f3f4f6;
-            --tech-text-muted: #9ca3af;
-            --tech-border: #1f2937;
+            --tech-primary: #4f46e5;
+            --tech-primary-glow: rgba(79, 70, 229, 0.12);
+            --tech-secondary: #0d9488;
+            --tech-bg: #f4f1ea;
+            --tech-card-bg: #fdfbf7;
+            --tech-text-main: #2d2b2a;
+            --tech-text-muted: #7c756d;
+            --tech-border: #e6e1d6;
         }
 
         .tech-wrapper {
             background-color: var(--tech-bg);
-            background-image: radial-gradient(rgba(129, 140, 248, 0.04) 1px, transparent 0), radial-gradient(rgba(45, 212, 191, 0.04) 1px, transparent 0);
+            background-image: radial-gradient(rgba(79, 70, 229, 0.04) 1px, transparent 0), radial-gradient(rgba(124, 117, 109, 0.04) 1px, transparent 0);
             background-size: 24px 24px;
             background-position: 0 0, 12px 12px;
             padding: 50px 0;
@@ -30,46 +30,46 @@
             --banner-card-border: var(--tech-border);
             --banner-card-title: var(--tech-text-main);
             --banner-card-subtitle: var(--tech-text-muted);
-            --banner-card-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-            --banner-card-hover-shadow: 0 20px 50px rgba(129, 140, 248, 0.06);
+            --banner-card-shadow: 0 4px 15px rgba(45, 43, 42, 0.03);
+            --banner-card-hover-shadow: 0 10px 25px rgba(45, 43, 42, 0.06);
             --banner-card-hover-border: var(--tech-primary);
-            --banner-icon-bg-zalo: rgba(59, 130, 246, 0.15);
-            --banner-icon-color-zalo: #818cf8;
-            --banner-icon-bg-fb: rgba(24, 119, 242, 0.15);
-            --banner-icon-color-fb: #818cf8;
-            --banner-icon-bg-admin: rgba(45, 212, 191, 0.15);
-            --banner-icon-color-admin: #2dd4bf;
+            --banner-icon-bg-zalo: #e6f0ff;
+            --banner-icon-color-zalo: #0068ff;
+            --banner-icon-bg-fb: #e7f3ff;
+            --banner-icon-color-fb: #1877f2;
+            --banner-icon-bg-admin: #e8f8f5;
+            --banner-icon-color-admin: #07be9e;
         }
 
         .tech-card {
             background: var(--tech-card-bg);
             border-radius: 24px;
             padding: 35px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 10px 30px rgba(45, 43, 42, 0.03), 0 1px 3px rgba(45, 43, 42, 0.02);
             border: 1px solid var(--tech-border);
             transition: all 0.3s ease;
         }
 
         .tech-card:hover {
-            box-shadow: 0 20px 50px rgba(129, 140, 248, 0.06);
-            border-color: rgba(129, 140, 248, 0.25);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.04);
+            border-color: rgba(79, 70, 229, 0.25);
         }
 
         .product-detail-image {
             border-radius: 18px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 30px rgba(45, 43, 42, 0.03);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--tech-border);
         }
 
         .product-detail-image:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 45px rgba(129, 140, 248, 0.15);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.08);
         }
 
         .tech-badge {
-            background: rgba(129, 140, 248, 0.04);
-            border: 1px solid rgba(129, 140, 248, 0.12);
+            background: rgba(45, 43, 40, 0.03);
+            border: 1px solid var(--tech-border);
             color: var(--tech-text-main);
             padding: 16px 20px;
             border-radius: 16px;
@@ -81,7 +81,7 @@
         }
 
         .tech-badge:hover {
-            background: rgba(129, 140, 248, 0.08);
+            background: rgba(45, 43, 40, 0.06);
             transform: translateY(-2px);
         }
 
@@ -99,7 +99,7 @@
             font-weight: 700;
             border-radius: 50px;
             padding: 14px 30px;
-            box-shadow: 0 8px 20px rgba(129, 140, 248, 0.3);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.15);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -109,7 +109,7 @@
 
         .btn-buy-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(129, 140, 248, 0.45);
+            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.3);
             color: white;
         }
 
@@ -150,8 +150,8 @@
 
         .btn-buy-outline:hover {
             transform: translateY(-2px);
-            background: #1f2937;
-            color: #ffffff;
+            background: #eae6dc;
+            color: var(--tech-text-main);
             border-color: var(--tech-text-muted);
         }
 
@@ -177,9 +177,9 @@
 
         .tech-tab.nav-link:hover {
             transform: translateY(-2px);
-            background: #1f2937 !important;
+            background: #eae6dc !important;
             color: var(--tech-primary) !important;
-            border-color: rgba(129, 140, 248, 0.3) !important;
+            border-color: rgba(79, 70, 229, 0.2) !important;
         }
 
         .tech-tab.nav-link.active {
@@ -194,7 +194,7 @@
         }
 
         .spec-item-box {
-            background: rgba(31, 41, 55, 0.4);
+            background: rgba(45, 43, 40, 0.03);
             border: 1px solid var(--tech-border);
             border-radius: 16px;
             padding: 18px 20px;
@@ -206,8 +206,8 @@
         }
         .spec-item-box:hover {
             background: var(--tech-card-bg);
-            border-color: rgba(129, 140, 248, 0.3);
-            box-shadow: 0 4px 12px rgba(129, 140, 248, 0.05);
+            border-color: rgba(79, 70, 229, 0.25);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.05);
         }
 
         .rating-input {
@@ -222,7 +222,7 @@
         .rating-input label {
             cursor: pointer;
             font-size: 28px;
-            color: #4b5563;
+            color: #ccc5b9;
             transition: color 0.2s;
         }
         .rating-input label:hover,
@@ -239,7 +239,7 @@
         }
         .tech-wrapper .bg-light, 
         .tech-wrapper .card.bg-light {
-            background: rgba(31, 41, 55, 0.5) !important;
+            background: #eae6dc !important;
             border: 1px solid var(--tech-border) !important;
             color: var(--tech-text-main) !important;
         }
@@ -275,12 +275,12 @@
             color: var(--tech-text-muted) !important;
         }
         .tech-wrapper .form-control {
-            background-color: rgba(17, 24, 39, 0.8) !important;
+            background-color: #fdfbf7 !important;
             border: 1px solid var(--tech-border) !important;
             color: var(--tech-text-main) !important;
         }
         .tech-wrapper .form-control::placeholder {
-            color: #6b7280 !important;
+            color: #7c756d !important;
         }
         .tech-wrapper .form-control:focus {
             background-color: var(--tech-card-bg) !important;
@@ -291,24 +291,24 @@
             border-color: var(--tech-border) !important;
         }
         .tech-wrapper .alert-success {
-            background: rgba(16, 185, 129, 0.1) !important;
-            color: #34d399 !important;
-            border: none !important;
+            background: rgba(16, 185, 129, 0.08) !important;
+            color: #059669 !important;
+            border: 1px solid rgba(16, 185, 129, 0.15) !important;
         }
         .tech-wrapper .alert-danger {
-            background: rgba(239, 68, 68, 0.1) !important;
-            color: #f87171 !important;
-            border: none !important;
+            background: rgba(239, 68, 68, 0.08) !important;
+            color: #dc2626 !important;
+            border: 1px solid rgba(239, 68, 68, 0.15) !important;
         }
         .tech-wrapper .alert-info {
-            background: rgba(59, 130, 246, 0.1) !important;
-            color: #60a5fa !important;
-            border: none !important;
+            background: rgba(59, 130, 246, 0.08) !important;
+            color: #2563eb !important;
+            border: 1px solid rgba(59, 130, 246, 0.15) !important;
         }
         .tech-wrapper .alert-warning {
-            background: rgba(245, 158, 11, 0.1) !important;
-            color: #fbbf24 !important;
-            border: none !important;
+            background: rgba(245, 158, 11, 0.08) !important;
+            color: #d97706 !important;
+            border: 1px solid rgba(245, 158, 11, 0.15) !important;
         }
 
         @media (max-width: 768px) {

@@ -34,18 +34,18 @@
     <style>
         :root {
             --emerald-primary: #10b981;
-            --emerald-primary-glow: rgba(16, 185, 129, 0.2);
+            --emerald-primary-glow: rgba(16, 185, 129, 0.12);
             --emerald-secondary: #059669;
-            --emerald-bg: #0b1329;
-            --emerald-card-bg: #1e293b;
-            --emerald-text-main: #f8fafc;
-            --emerald-text-muted: #94a3b8;
-            --emerald-border: #334155;
+            --emerald-bg: #f4f1ea;
+            --emerald-card-bg: #fdfbf7;
+            --emerald-text-main: #2d2b2a;
+            --emerald-text-muted: #7c756d;
+            --emerald-border: #e6e1d6;
         }
 
         .emerald-wrapper {
             background-color: var(--emerald-bg);
-            background-image: radial-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 0), radial-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 0);
+            background-image: radial-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 0), radial-gradient(rgba(124, 117, 109, 0.04) 1px, transparent 0);
             background-size: 24px 24px;
             background-position: 0 0, 12px 12px;
             padding: 50px 0;
@@ -57,45 +57,45 @@
             --banner-card-border: var(--emerald-border);
             --banner-card-title: var(--emerald-text-main);
             --banner-card-subtitle: var(--emerald-text-muted);
-            --banner-card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            --banner-card-hover-shadow: 0 20px 50px rgba(16, 185, 129, 0.06);
+            --banner-card-shadow: 0 4px 15px rgba(45, 43, 42, 0.03);
+            --banner-card-hover-shadow: 0 10px 25px rgba(45, 43, 42, 0.06);
             --banner-card-hover-border: var(--emerald-primary);
-            --banner-icon-bg-zalo: rgba(16, 185, 129, 0.15);
-            --banner-icon-color-zalo: #10b981;
-            --banner-icon-bg-fb: rgba(24, 119, 242, 0.15);
-            --banner-icon-color-fb: #10b981;
-            --banner-icon-bg-admin: rgba(6, 182, 212, 0.15);
-            --banner-icon-color-admin: #06b6d4;
+            --banner-icon-bg-zalo: #e6f0ff;
+            --banner-icon-color-zalo: #0068ff;
+            --banner-icon-bg-fb: #e7f3ff;
+            --banner-icon-color-fb: #1877f2;
+            --banner-icon-bg-admin: #e8f8f5;
+            --banner-icon-color-admin: #07be9e;
         }
 
         .emerald-card {
             background: var(--emerald-card-bg);
             border-radius: 24px;
             padding: 35px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(45, 43, 42, 0.03), 0 1px 3px rgba(45, 43, 42, 0.02);
             border: 1px solid var(--emerald-border);
             transition: all 0.3s ease;
         }
 
         .emerald-card:hover {
-            box-shadow: 0 20px 50px rgba(16, 185, 129, 0.06);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.04);
             border-color: rgba(16, 185, 129, 0.25);
         }
 
         .product-detail-image {
             border-radius: 18px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 12px 30px rgba(45, 43, 42, 0.03);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--emerald-border);
         }
 
         .product-detail-image:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 45px rgba(16, 185, 129, 0.15);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.08);
         }
 
         .info-badge {
-            background: rgba(30, 41, 59, 0.4);
+            background: rgba(45, 43, 40, 0.03);
             border: 1px solid var(--emerald-border);
             color: var(--emerald-text-main);
             padding: 16px 20px;
@@ -108,7 +108,7 @@
         }
 
         .info-badge:hover {
-            background: rgba(30, 41, 59, 0.8);
+            background: rgba(45, 43, 40, 0.06);
             transform: translateY(-2px);
         }
 
@@ -126,7 +126,7 @@
             font-weight: 700;
             border-radius: 50px;
             padding: 14px 30px;
-            box-shadow: 0 8px 20px var(--emerald-primary-glow);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -177,7 +177,7 @@
 
         .btn-buy-outline:hover {
             transform: translateY(-2px);
-            background: #334155;
+            background: #eae6dc;
             color: var(--emerald-text-main);
             border-color: var(--emerald-text-muted);
         }
@@ -204,7 +204,7 @@
 
         .emerald-tab.nav-link:hover {
             transform: translateY(-2px);
-            background: #334155 !important;
+            background: #eae6dc !important;
             color: var(--emerald-primary) !important;
             border-color: rgba(16, 185, 129, 0.2) !important;
         }
@@ -221,7 +221,7 @@
         }
 
         .spec-item-box {
-            background: rgba(30, 41, 59, 0.4);
+            background: rgba(45, 43, 40, 0.03);
             border: 1px solid var(--emerald-border);
             border-radius: 16px;
             padding: 18px 20px;
@@ -266,7 +266,7 @@
         }
         .emerald-wrapper .bg-light, 
         .emerald-wrapper .card.bg-light {
-            background: rgba(30, 41, 59, 0.5) !important;
+            background: #eae6dc !important;
             border: 1px solid var(--emerald-border) !important;
             color: var(--emerald-text-main) !important;
         }
@@ -302,7 +302,7 @@
             color: var(--emerald-text-muted) !important;
         }
         .emerald-wrapper .form-control {
-            background-color: rgba(15, 23, 42, 0.8) !important;
+            background-color: #fdfbf7 !important;
             border: 1px solid var(--emerald-border) !important;
             color: var(--emerald-text-main) !important;
         }
@@ -321,24 +321,24 @@
             border-color: var(--emerald-border) !important;
         }
         .emerald-wrapper .alert-success {
-            background: rgba(16, 185, 129, 0.1) !important;
-            color: #34d399 !important;
-            border: none !important;
+            background: rgba(16, 185, 129, 0.08) !important;
+            color: #059669 !important;
+            border: 1px solid rgba(16, 185, 129, 0.15) !important;
         }
         .emerald-wrapper .alert-danger {
-            background: rgba(239, 68, 68, 0.1) !important;
-            color: #f87171 !important;
-            border: none !important;
+            background: rgba(239, 68, 68, 0.08) !important;
+            color: #dc2626 !important;
+            border: 1px solid rgba(239, 68, 68, 0.15) !important;
         }
         .emerald-wrapper .alert-info {
-            background: rgba(59, 130, 246, 0.1) !important;
-            color: #60a5fa !important;
-            border: none !important;
+            background: rgba(59, 130, 246, 0.08) !important;
+            color: #2563eb !important;
+            border: 1px solid rgba(59, 130, 246, 0.15) !important;
         }
         .emerald-wrapper .alert-warning {
-            background: rgba(245, 158, 11, 0.1) !important;
-            color: #fbbf24 !important;
-            border: none !important;
+            background: rgba(245, 158, 11, 0.08) !important;
+            color: #d97706 !important;
+            border: 1px solid rgba(245, 158, 11, 0.15) !important;
         }
 
         @media (max-width: 768px) {
