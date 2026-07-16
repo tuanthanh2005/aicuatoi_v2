@@ -27,14 +27,6 @@ class BlogSeeder extends Seeder
                 'published_at' => now()->subDays(2),
             ],
             [
-                'title' => 'Phối Đồ Streetwear: Bí Quyết Để Trông "Ngầu" Hơn',
-                'excerpt' => 'Hướng dẫn cách mix áo Hoodie với quần Baggy và giày Sneaker đúng chuẩn Gen Z...',
-                'content' => '<p>Streetwear không chỉ là phong cách thời trang mà còn là cách thể hiện cá tính của giới trẻ. Để phối đồ streetwear đẹp và "ngầu", bạn cần nắm được những bí quyết sau.</p><h2>1. Chọn áo Hoodie phù hợp</h2><p>Áo hoodie oversized là lựa chọn hoàn hảo cho phong cách streetwear...</p>',
-                'image' => 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500',
-                'category' => 'fashion',
-                'published_at' => now()->subDays(4),
-            ],
-            [
                 'title' => 'Cách Sử Dụng Tool Check Live UID Facebook Miễn Phí',
                 'excerpt' => 'Hướng dẫn chi tiết cách lọc data khách hàng tiềm năng bằng bộ công cụ miễn phí tại AiCuaToi.com...',
                 'content' => '<p>Tool check live UID Facebook là công cụ hữu ích giúp các marketer và người làm kinh doanh online xác định được những tài khoản Facebook còn hoạt động.</p><h2>Tại sao cần check live UID?</h2><p>Việc lọc được UID live giúp bạn tối ưu chi phí quảng cáo và tăng tỷ lệ chuyển đổi...</p>',
@@ -49,14 +41,6 @@ class BlogSeeder extends Seeder
                 'image' => 'https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?w=500',
                 'category' => 'tech',
                 'published_at' => now()->subDays(8),
-            ],
-            [
-                'title' => 'Xu Hướng Thời Trang Nam 2024: Minimalism Is The Key',
-                'excerpt' => 'Phong cách tối giản đang trở thành xu hướng thống trị làng thời trang nam toàn cầu...',
-                'content' => '<p>Năm 2024 đánh dấu sự trở lại mạnh mẽ của phong cách minimalism trong thời trang nam. Ít nhưng chất, đơn giản nhưng tinh tế.</p><h2>Màu sắc trung tính lên ngôi</h2><p>Các tông màu như đen, trắng, be, xám đang được ưa chuộng hơn bao giờ hết...</p>',
-                'image' => 'https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=500',
-                'category' => 'fashion',
-                'published_at' => now()->subDays(10),
             ],
         ];
 

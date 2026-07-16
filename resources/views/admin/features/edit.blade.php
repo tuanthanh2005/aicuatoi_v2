@@ -161,7 +161,6 @@
                             <select class="form-select @error('category') is-invalid @enderror" 
                                     id="category" name="category" required>
                                 <option value="tech" {{ old('category', $feature->category) == 'tech' ? 'selected' : '' }}>Công nghệ</option>
-                                <option value="fashion" {{ old('category', $feature->category) == 'fashion' ? 'selected' : '' }}>Thời trang</option>
                                 <option value="doc" {{ old('category', $feature->category) == 'doc' ? 'selected' : '' }}>Văn phòng phẩm</option>
                             </select>
                             @error('category')

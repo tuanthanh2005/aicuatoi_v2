@@ -37,20 +37,6 @@ class ProductSeeder extends Seeder
                 'description' => 'Industry-leading noise canceling headphones with premium sound.',
             ],
             [
-                'name' => 'Áo Hoodie Streetwear',
-                'price' => 450000,
-                'image' => 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500',
-                'category' => 'fashion',
-                'description' => 'Áo hoodie form rộng, chất liệu nỉ bông cao cấp, phong cách trẻ trung.',
-            ],
-            [
-                'name' => 'Giày Sneaker Chunky',
-                'price' => 1200000,
-                'image' => 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=500',
-                'category' => 'fashion',
-                'description' => 'Thiết kế hầm hố, đế cao hack dáng, êm ái khi di chuyển.',
-            ],
-            [
                 'name' => 'Ebook Laravel Pro',
                 'price' => 199000,
                 'image' => 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500',

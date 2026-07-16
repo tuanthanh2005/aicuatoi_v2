@@ -441,6 +441,27 @@ class ProductController extends Controller
         });
     }
 
+    private static function maskCustomerName(string $name): string
+    {
+        $name = trim($name);
+        if ($name === '') {
+            return 'Khách hàng';
+        }
+
+        $parts = preg_split('/\\s+/u', $name) ?: [];
+        $parts = array_values(array_filter($parts, fn ($p) => $p !== ''));
+
+        if (count($parts) === 1) {
+            $first = mb_substr($parts[0], 0, 1);
+            return $first . '***';
+        }
+
+        $givenName = $parts[count($parts) - 1];
+        $surnameInitial = mb_substr($parts[0], 0, 1);
+
+        return $givenName . ' ' . $surnameInitial . '.';
+    }
+
     public function show($slug)
     {
         $product = Product::where('slug', $slug)->with(['comments', 'features'])->first();
@@ -477,14 +498,47 @@ class ProductController extends Controller
         ];
         
         $view = $viewMap[$product->category] ?? 'products.show';
+        if (!view()->exists($view)) {
+            $view = 'products.show';
+        }
         
         // Check if user has purchased this product (for ebooks)
         $hasPurchased = false;
         if (auth()->check() && $product->category === 'ebooks') {
             $hasPurchased = $product->isPurchasedBy(auth()->id());
         }
+
+        // Lấy 10 blog mới nhất (published) để hiển thị ở sidebar
+        $latestBlogs = \App\Models\Blog::published()->orderBy('published_at', 'desc')->take(10)->get();
+
+        // Lấy 10 đơn hàng gần nhất để hiển thị ở sidebar
+        $recentPurchases = \Illuminate\Support\Facades\Cache::remember('home.recent_purchases.v2', now()->addMinutes(5), function () {
+            return \App\Models\Order::query()
+                ->with(['orderItems.product'])
+                ->whereNotIn('status', ['cancelled'])
+                ->latest()
+                ->take(10)
+                ->get()
+                ->map(function (\App\Models\Order $order) {
+                    $firstItem = $order->orderItems->first();
+                    $product = $firstItem?->product;
+                    $extraItems = max(0, $order->orderItems->count() - 1);
+                    $verb = in_array($order->status, ['completed', 'delivered', 'shipped'], true) ? 'mua' : 'đặt';
+
+                    return [
+                        'customer_name' => self::maskCustomerName((string) $order->customer_name),
+                        'verb' => $verb,
+                        'product_name' => $product?->name ?? 'Sản phẩm',
+                        'product_slug' => $product?->slug,
+                        'product_url' => $product?->slug ? route('product.show', $product->slug) : null,
+                        'extra_items' => $extraItems,
+                        'time_ago' => optional($order->created_at)->diffForHumans(),
+                    ];
+                })
+                ->all();
+        });
         
-        return view($view, compact('product', 'relatedProducts', 'averageRating', 'totalReviews', 'hasPurchased'));
+        return view($view, compact('product', 'relatedProducts', 'averageRating', 'totalReviews', 'hasPurchased', 'latestBlogs', 'recentPurchases'));
     }
 
     public function storeComment(Request $request, Product $product)

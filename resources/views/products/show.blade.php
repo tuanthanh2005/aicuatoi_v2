@@ -391,6 +391,101 @@
                 font-size: 1.5rem;
             }
         }
+
+        /* MAIN HOMEPAGE GRID */
+        .homepage-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+                "main"
+                "sidebar";
+            gap: 30px;
+            max-width: 1300px;
+            margin: 30px auto 60px;
+            padding: 0 20px;
+        }
+        @media (min-width: 992px) {
+            .homepage-grid {
+                grid-template-columns: 320px 1fr;
+                grid-template-areas: "sidebar main";
+            }
+        }
+        .homepage-sidebar {
+            grid-area: sidebar;
+            --sidebar-card-bg: var(--emerald-card-bg);
+            --sidebar-border: var(--emerald-border);
+            --sidebar-text-main: var(--emerald-text-main);
+            --sidebar-text-muted: var(--emerald-text-muted);
+            --sidebar-primary: var(--emerald-primary);
+        }
+        .homepage-sidebar .sidebar-widget {
+            background: var(--sidebar-card-bg) !important;
+            border: 1px solid var(--sidebar-border) !important;
+            color: var(--sidebar-text-main) !important;
+        }
+        .homepage-sidebar .sidebar-widget:hover {
+            border-color: var(--sidebar-primary) !important;
+        }
+        .homepage-sidebar .widget-title {
+            color: var(--sidebar-text-main) !important;
+        }
+        .homepage-sidebar .contact-card-sidebar {
+            background: rgba(45, 43, 40, 0.03) !important;
+            border: 1px solid var(--sidebar-border) !important;
+            color: var(--sidebar-text-main) !important;
+        }
+        .homepage-sidebar .contact-card-sidebar:hover {
+            background: var(--sidebar-card-bg) !important;
+            border-color: var(--sidebar-primary) !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08) !important;
+        }
+        .homepage-sidebar .contact-name {
+            color: var(--sidebar-text-main) !important;
+        }
+        .homepage-sidebar .contact-desc {
+            color: var(--sidebar-text-muted) !important;
+        }
+        .homepage-sidebar .live-activity-item {
+            background: rgba(45, 43, 40, 0.03) !important;
+            border: 1px solid var(--sidebar-border) !important;
+            color: var(--sidebar-text-main) !important;
+        }
+        .homepage-sidebar .activity-user {
+            color: var(--sidebar-text-main) !important;
+        }
+        .homepage-sidebar .activity-action {
+            color: var(--sidebar-text-muted) !important;
+        }
+        .homepage-sidebar .activity-product {
+            color: var(--sidebar-primary) !important;
+        }
+        .homepage-sidebar .activity-extra {
+            color: var(--sidebar-text-muted) !important;
+        }
+        .homepage-sidebar .activity-time {
+            color: var(--sidebar-text-muted) !important;
+        }
+        .homepage-sidebar .sidebar-blog-item {
+            color: var(--sidebar-text-main) !important;
+        }
+        .homepage-sidebar .blog-title-text {
+            color: var(--sidebar-text-main) !important;
+        }
+        .homepage-sidebar .blog-date {
+            color: var(--sidebar-text-muted) !important;
+        }
+        .homepage-sidebar .blog-thumb {
+            border: 1px solid var(--sidebar-border) !important;
+        }
+        .homepage-sidebar .guarantee-title {
+            color: var(--sidebar-text-main) !important;
+        }
+        .homepage-sidebar .guarantee-desc {
+            color: var(--sidebar-text-muted) !important;
+        }
+        .homepage-main {
+            grid-area: main;
+        }
     </style>
 @endpush
 
@@ -404,9 +499,15 @@
                 <li class="breadcrumb-item"><a href="{{ route('shop') }}" style="color: var(--emerald-primary); font-weight: 600; text-decoration: none;">Cửa hàng</a></li>
                 <li class="breadcrumb-item active" style="color: var(--emerald-text-main); font-weight: 700;">{{ $product->name }}</li>
             </ol>
-        </nav>
+        {{-- Layout Grid matching dashboard --}}
+        <div class="homepage-grid" style="margin-top: 0;">
+            
+            {{-- Left Sidebar --}}
+            @include('partials.sidebar')
 
-        <div class="row">
+            {{-- Right Main Content --}}
+            <main class="homepage-main">
+                <div class="row">
             <div class="col-lg-6 mb-4" data-aos="fade-right">
                 <div class="emerald-card">
                     <img src="{{ $product->image ?? 'https://via.placeholder.com/600' }}" 
@@ -660,6 +761,7 @@
                     @include('products.partials.reviews', ['product' => $product, 'averageRating' => $averageRating, 'totalReviews' => $totalReviews])
                 </div>
             </div>
+            </main>
         </div>
     </div>
 </div>

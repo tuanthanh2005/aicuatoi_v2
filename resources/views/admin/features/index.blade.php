@@ -209,7 +209,7 @@
                             <div class="flex-grow-1">
                                 <h5 class="mb-1">{{ $feature->name }}</h5>
                                 <span class="category-badge category-{{ $feature->category }}">
-                                    {{ $feature->category === 'tech' ? 'Công nghệ' : ($feature->category === 'fashion' ? 'Thời trang' : 'Văn phòng phẩm') }}
+                                    {{ $feature->category === 'tech' ? 'Công nghệ' : 'Văn phòng phẩm' }}
                                 </span>
                             </div>
                         </div>
